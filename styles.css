@@ -1,0 +1,120 @@
+body {
+  margin: 0;
+}
+
+img {
+  width: 100%;
+}
+
+#screen {
+  /* create a grid with only one cell */
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  /* make a 16:9 sized box that takes on the width of the window */
+  aspect-ratio: 7 / 3;
+  width: 100%;
+}
+
+#game {
+  grid-area: 1 / 1;
+  /* background-color: blue; */
+
+  overflow: hidden;
+
+  /* create a grid with only one cell */
+  display: grid;
+  grid-template-columns: 10% / 10%;
+  grid-template-rows: 100%;
+}
+
+#game_background {
+  grid-area: 1 / 1;
+  background-image: url(img/background.jpg);
+  background-size: cover;
+}
+
+#fish1_container {
+  width: 10%;
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  /* transform: scale(-1, 1); */
+}
+
+#fish2_container {
+  width: 10%;
+  position: absolute;
+  top: 17%;
+  left: 9%;
+}
+#fish3_container {
+  width: 10%;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+}
+#fish4_container {
+  width: 10%;
+  position: absolute;
+  top: 30%;
+  left: 70%;
+}
+#fish5_container {
+  width: 10%;
+  position: absolute;
+  top: 29%;
+  left: 40%;
+}
+#fish6_container {
+  width: 10%;
+  position: absolute;
+  top: 17%;
+  left: 75%;
+}
+#fish7_container {
+  width: 10%;
+  position: absolute;
+  top: 31%;
+  left: 60%;
+}
+#fish8_container {
+  width: 10%;
+  position: absolute;
+  top: 23%;
+  left: 34%;
+}
+#fish9_container {
+  width: 10%;
+  position: absolute;
+  top: 37%;
+  left: 25%;
+}
+
+#fish1_sprite {
+  width: 100%;
+}
+#fish2_sprite {
+  width: 100%;
+}
+#fish3_sprite {
+  width: 100%;
+}
+#fish4_sprite {
+  width: 100%;
+}
+#fish5_sprite {
+  width: 100%;
+}
+#fish6_sprite {
+  width: 100%;
+}
+#fish7_sprite {
+  width: 100%;
+}
+#fish8_sprite {
+  width: 100%;
+}
+#fish9_sprite {
+  width: 100%;
+}
