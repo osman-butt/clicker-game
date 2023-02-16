@@ -40,12 +40,39 @@ img {
   overflow: hidden;
 }
 
+#fisherman_container {
+  width: 15%;
+  position: absolute;
+  top: 3%;
+  left: 55%;
+}
+
+#boat_container {
+  width: 30%;
+  position: absolute;
+  top: 14%;
+  left: 40%;
+}
+
+@keyframes moveLeftRight {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(200vw, 0);
+  }
+}
+
 #fish1_container {
   width: 10%;
   position: absolute;
   top: 45%;
-  left: 5%;
+  left: -15%;
   /* transform: scale(-1, 1); */
+  animation: moveLeftRight;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 #fish2_container {
@@ -97,6 +124,12 @@ img {
   left: 25%;
 }
 
+#fisherman_sprite {
+  width: 100%;
+}
+#boat_sprite {
+  width: 100%;
+}
 #fish1_sprite {
   width: 100%;
 }
