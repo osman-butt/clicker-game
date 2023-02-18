@@ -36,7 +36,8 @@ img {
 
 #game_background,
 #game-over-background,
-#start-background {
+#start-background,
+#level-complete-background {
   grid-area: 1 / 1;
   background-image: url(img/background.jpg);
   background-size: cover;
@@ -398,7 +399,8 @@ img {
 }
 
 #start,
-#game-over {
+#game-over,
+#level-complete {
   grid-area: 1 / 1;
   /* background-color: blue; */
   overflow: hidden;
@@ -410,7 +412,8 @@ img {
 
 #menu-container,
 #menu-how-to-play-container,
-#game-over-container {
+#game-over-container,
+#level-complete-container {
   grid-area: 1 / 1;
   display: grid;
   grid-template-columns: repeat(11, 10vw);
@@ -503,7 +506,8 @@ img {
 }
 
 #how-to-play-text,
-#game-over-text {
+#game-over-text,
+#level-complete-text {
   grid-area: 4 / 5 / 9 / 7;
   z-index: 0;
   font-family: "Games", sans-serif;
@@ -543,4 +547,15 @@ button:hover {
   justify-self: center;
   align-self: center;
   position: absolute;
+}
+
+#level-complete-container > .start-btn {
+  grid-area: 6 / 5 / 8 / 7;
+  justify-self: center;
+  align-self: center;
+  position: absolute;
+}
+
+.menu-fisher-sprite {
+  width: 100%;
 }
