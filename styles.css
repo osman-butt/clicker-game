@@ -19,9 +19,7 @@ img {
 #game {
   grid-area: 1 / 1;
   /* background-color: blue; */
-
   overflow: hidden;
-
   /* create a grid with only one cell */
   display: grid;
   grid-template-columns: 10% / 10%;
@@ -40,18 +38,42 @@ img {
   overflow: hidden;
 }
 
-#fisherman_container {
-  width: 15%;
+/* Game element containers and sprites */
+#fisherman_boat_container {
+  width: 25%;
   position: absolute;
-  top: 3%;
+  top: 12%;
+  left: 35%;
+}
+#bag_container {
+  width: 8%;
+  position: absolute;
+  top: 55%;
   left: 55%;
 }
-
-#boat_container {
-  width: 30%;
+#can_container {
+  width: 5%;
   position: absolute;
-  top: 14%;
-  left: 40%;
+  top: 70%;
+  left: 89%;
+}
+#battery_container {
+  width: 3%;
+  position: absolute;
+  top: 43%;
+  left: 90%;
+}
+#bottle_container {
+  width: 8%;
+  position: absolute;
+  top: 48%;
+  left: 10%;
+}
+#plastic_container {
+  width: 5%;
+  position: absolute;
+  top: 65%;
+  left: 10%;
 }
 
 @keyframes moveLeftRight {
@@ -63,12 +85,29 @@ img {
   }
 }
 
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(0);
+  }
+  75% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
 #fish1_container {
   width: 10%;
   position: absolute;
   top: 45%;
   left: -15%;
-  /* transform: scale(-1, 1); */
   animation: moveLeftRight;
   animation-duration: 5s;
   animation-timing-function: linear;
@@ -99,7 +138,7 @@ img {
   top: 65%;
   left: 40%;
 }
-#fish6_container {
+/* #fish6_container {
   width: 10%;
   position: absolute;
   top: 34%;
@@ -122,13 +161,49 @@ img {
   position: absolute;
   top: 43%;
   left: 25%;
-}
+} */
 
-#fisherman_sprite {
+#fisherman_boat_sprite {
   width: 100%;
 }
-#boat_sprite {
+#bag_sprite {
   width: 100%;
+  animation: rotate;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+#can_sprite {
+  width: 100%;
+  animation: rotate;
+  animation-duration: 10s;
+  animation-delay: 0.75;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+#battery_sprite {
+  width: 100%;
+  animation: rotate;
+  animation-duration: 10s;
+  animation-delay: 1;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+#bottle_sprite {
+  width: 100%;
+  animation: rotate;
+  animation-duration: 10s;
+  animation-delay: 1.25s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+#plastic_sprite {
+  width: 100%;
+  animation: rotate;
+  animation-duration: 10s;
+  animation-delay: 1.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 #fish1_sprite {
   width: 100%;
@@ -145,7 +220,7 @@ img {
 #fish5_sprite {
   width: 100%;
 }
-#fish6_sprite {
+/* #fish6_sprite {
   width: 100%;
 }
 #fish7_sprite {
@@ -156,4 +231,268 @@ img {
 }
 #fish9_sprite {
   width: 100%;
+} */
+
+/* #game_ui {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  position: fixed;
+  top: 1em;
+  left: 10em;
+} */
+#game_ui {
+  grid-area: 1 / 1;
+  /* position: relative; */
+}
+
+#game_ui_container {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  text-align: center; */
+  display: grid;
+  grid-template-columns: repeat(9, 11.11vw);
+  grid-template-rows: repeat(10, 5.625vw);
+  /* text-align: center; */
+}
+
+#score_board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-area: 1 / 2;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
+}
+
+#score_logo {
+  width: 65%;
+}
+
+#score {
+  align-self: center;
+  font-size: 150%;
+  font-family: sans-serif;
+}
+
+#time_board {
+  grid-area: 1 / 4 / 2 / span 3;
+  align-self: center;
+  border: solid;
+  border-radius: 1em;
+  overflow: hidden;
+  animation: glow;
+  animation-duration: 10s;
+  animation-delay: 50s;
+  animation-timing-function: linear;
+}
+
+#life_board {
+  display: grid;
+  grid-area: 1 / 8;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-self: center;
+  gap: 0.5em;
+}
+
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
+  }
+  10% {
+    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
+  }
+  20% {
+    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
+  }
+  30% {
+    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
+  }
+  40% {
+    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
+  }
+  60% {
+    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
+  }
+  70% {
+    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
+  }
+  80% {
+    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
+  }
+  90% {
+    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
+  }
+  100% {
+    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
+  }
+}
+
+.timer div {
+  height: 1em;
+  background: linear-gradient(to bottom, red, #900);
+  animation: timer-countdown;
+  animation-duration: 60s;
+  animation-timing-function: linear;
+  transform-origin: left center;
+  animation-fill-mode: forwards;
+}
+
+@keyframes timer-countdown {
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+#start {
+  grid-area: 1 / 1;
+  /* background-color: blue; */
+  overflow: hidden;
+  /* create a grid with only one cell */
+  display: grid;
+  grid-template-columns: 10% / 10%;
+  grid-template-rows: 100%;
+}
+
+#start-background {
+  grid-area: 1 / 1;
+  background-image: url(img/background.jpg);
+  background-size: cover;
+}
+
+#menu-container,
+#menu-how-to-play-container {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: repeat(11, 10vw);
+  grid-template-rows: repeat(10, 5.625vw);
+  position: relative;
+}
+
+#game-name {
+  grid-area: 3 / 4 / 4 / 8;
+  font-family: "Games", sans-serif;
+  text-align: center;
+  color: black;
+  z-index: 1;
+  background-size: cover;
+}
+
+#game-name h1 {
+  font-size: 3vw;
+}
+
+.menu {
+  grid-area: 2 / 4 / 8 / 8;
+  position: relative;
+}
+
+#start-btn {
+  grid-area: 4 / 5 / 6 / 7;
+  justify-self: center;
+  align-self: center;
+  position: absolute;
+}
+
+#start-btn > button {
+  font-family: "Games", sans-serif;
+
+  background-color: rgb(0, 94, 255);
+  color: white;
+  border: solid;
+  border-radius: 1em;
+  border-color: black;
+  width: 12em;
+  height: 4em;
+  font-size: 2vw;
+}
+
+#how-to-play-btn {
+  grid-area: 6 / 5 / 8 / 7;
+  justify-self: center;
+  align-self: center;
+  position: absolute;
+}
+
+#how-to-play-btn > button {
+  font-family: "Games", sans-serif;
+
+  background-color: rgb(0, 94, 255);
+  color: white;
+  border: solid;
+  border-radius: 1em;
+  border-color: black;
+  width: 12em;
+  height: 4em;
+  font-size: 2vw;
+}
+
+#rankings-btn {
+  grid-area: 8 / 5 / 10 / 7;
+  justify-self: center;
+  align-self: center;
+  position: absolute;
+}
+
+#rankings-btn > button {
+  font-family: "Games", sans-serif;
+
+  background-color: rgb(0, 94, 255);
+  color: white;
+  border: solid;
+  border-radius: 1em;
+  border-color: black;
+  width: 12em;
+  height: 4em;
+  font-size: 2vw;
+}
+
+#menu-fisher {
+  width: 30%;
+  top: 21%;
+  left: 0;
+  position: absolute;
+  margin-bottom: 0;
+}
+
+#how-to-play-text {
+  grid-area: 4 / 5 / 9 / 7;
+  z-index: 0;
+  font-family: "Games", sans-serif;
+  font-weight: bold;
+  color: rgb(47, 107, 237);
+  font-size: 1.9vw;
+}
+
+.back-btn {
+  grid-area: 8 / 5 / 10 / 7;
+  justify-self: center;
+  align-self: center;
+  position: absolute;
+}
+
+.back-btn > button {
+  font-family: "Games", sans-serif;
+
+  background-color: rgb(0, 94, 255);
+  color: white;
+  border: solid;
+  border-radius: 1em;
+  border-color: black;
+  width: 8em;
+  height: 3em;
+  font-size: 2vw;
+}
+
+button:hover {
+  opacity: 0.9;
+  cursor: pointer;
 }

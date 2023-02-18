@@ -5,19 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.cdnfonts.com/css/games" rel="stylesheet" />
+
     <title>Garbage Collector</title>
   </head>
   <body>
     <div id="screen">
-      <div id="game">
+      <div id="game" class="hidden">
         <div id="game_background"></div>
         <div id="game_elements">
-          <div id="fisherman_container">
-            <img id="fisherman_sprite" src="img/fisherman.png" alt="" />
+          <div id="fisherman_boat_container">
+            <img
+              id="fisherman_boat_sprite"
+              src="img/fisherman_sitting.png"
+              alt=""
+            />
           </div>
-          <div id="boat_container">
-            <img id="boat_sprite" src="img/boat.png" alt="" />
+          <!-- Game elements: click => gets points -->
+          <div id="bag_container">
+            <img id="bag_sprite" src="img/plastic_bag.png" alt="" />
           </div>
+          <div id="can_container">
+            <img id="can_sprite" src="img/can_1.png" alt="" />
+          </div>
+          <div id="battery_container">
+            <img id="battery_sprite" src="img/battery.png" alt="" />
+          </div>
+          <div id="bottle_container">
+            <img id="bottle_sprite" src="img/bottle.png" alt="" />
+          </div>
+          <div id="plastic_container">
+            <img id="plastic_sprite" src="img/plastic.png" alt="" />
+          </div>
+          <!-- Game elements: click => lose one life -->
           <div id="fish1_container">
             <img id="fish1_sprite" src="img/Fish1.png" alt="" />
           </div>
@@ -33,7 +53,7 @@
           <div id="fish5_container">
             <img id="fish5_sprite" src="img/Fish5.png" alt="" />
           </div>
-          <div id="fish6_container">
+          <!-- <div id="fish6_container">
             <img id="fish6_sprite" src="img/Fish6.png" alt="" />
           </div>
           <div id="fish7_container">
@@ -44,18 +64,84 @@
           </div>
           <div id="fish9_container">
             <img id="fish9_sprite" src="img/Fish9.png" alt="" />
-          </div>
+          </div> -->
         </div>
         <!-- <div id="game_foreground"></div> -->
         <div id="game_ui">
-          <div id="score_board"></div>
-          <div id="life_board"></div>
-          <div id="time_board"></div>
+          <div id="game_ui_container">
+            <div id="score_board">
+              <div id="score_logo">
+                <img id="star_sprite" src="img/star.png" alt="" />
+              </div>
+              <div id="score">00</div>
+            </div>
+            <div id="life_board">
+              <div id="life1">
+                <img id="life1_sprite" src="img/life.png" alt="" />
+              </div>
+              <div id="life2">
+                <img id="life2_sprite" src="img/life.png" alt="" />
+              </div>
+              <div id="life3">
+                <img id="life3_sprite" src="img/life.png" alt="" />
+              </div>
+            </div>
+            <div id="time_board">
+              <div class="timer">
+                <div></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div id="start"></div>
-      <div id="game-over"></div>
-      <div id="level-complete"></div>
+      <div id="start">
+        <div id="start-background"></div>
+        <div id="menu-container">
+          <img class="menu" src="img/menu.png" alt="" />
+          <div id="game-name"><h1>Garbage Collector</h1></div>
+          <div id="start-btn">
+            <button>START</button>
+          </div>
+          <div id="how-to-play-btn">
+            <button>HOW TO PLAY</button>
+          </div>
+          <div id="rankings-btn">
+            <button>RANKINGS</button>
+          </div>
+          <div id="menu-fisher">
+            <img
+              id="menu-fisher-sprite"
+              src="img/fisherman_standing.png"
+              alt=""
+            />
+          </div>
+        </div>
+        <div id="menu-how-to-play-container" class="hidden">
+          <img class="menu" src="img/menu.png" alt="" />
+          <div id="game-name"><h1>How to play?</h1></div>
+          <div id="how-to-play-text">
+            <p>
+              Help the fisherman clean the lake, by capturing all the garbage
+              before the time runs out.
+              <br />
+              <br />
+              But be careful not to capture any fish.
+            </p>
+          </div>
+          <div class="back-btn">
+            <button>MENU</button>
+          </div>
+          <div id="menu-fisher">
+            <img
+              id="menu-fisher-sprite"
+              src="img/fisherman_standing.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      <div id="game-over" class="hidden"></div>
+      <div id="level-complete" class="hidden"></div>
     </div>
   </body>
 </html>
