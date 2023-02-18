@@ -456,16 +456,15 @@ img {
   font-size: 2vw;
 }
 
-#how-to-play-btn {
+.how-to-play-btn {
   grid-area: 6 / 5 / 8 / 7;
   justify-self: center;
   align-self: center;
   position: absolute;
 }
 
-#how-to-play-btn > button {
+.how-to-play-btn > button {
   font-family: "Games", sans-serif;
-
   background-color: rgb(0, 94, 255);
   color: white;
   border: solid;
@@ -485,7 +484,6 @@ img {
 
 .rankings-btn > button {
   font-family: "Games", sans-serif;
-
   background-color: rgb(0, 94, 255);
   color: white;
   border: solid;
