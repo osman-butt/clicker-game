@@ -34,7 +34,9 @@ img {
   grid-template-rows: 100%;
 }
 
-#game_background {
+#game_background,
+#game-over-background,
+#start-background {
   grid-area: 1 / 1;
   background-image: url(img/background.jpg);
   background-size: cover;
@@ -395,7 +397,8 @@ img {
   visibility: hidden;
 }
 
-#start {
+#start,
+#game-over {
   grid-area: 1 / 1;
   /* background-color: blue; */
   overflow: hidden;
@@ -405,14 +408,9 @@ img {
   grid-template-rows: 100%;
 }
 
-#start-background {
-  grid-area: 1 / 1;
-  background-image: url(img/background.jpg);
-  background-size: cover;
-}
-
 #menu-container,
-#menu-how-to-play-container {
+#menu-how-to-play-container,
+#game-over-container {
   grid-area: 1 / 1;
   display: grid;
   grid-template-columns: repeat(11, 10vw);
@@ -420,7 +418,7 @@ img {
   position: relative;
 }
 
-#game-name {
+.menu-header {
   grid-area: 3 / 4 / 4 / 8;
   font-family: "Games", sans-serif;
   text-align: center;
@@ -429,7 +427,7 @@ img {
   background-size: cover;
 }
 
-#game-name h1 {
+.menu-header h1 {
   font-size: 3vw;
 }
 
@@ -438,14 +436,14 @@ img {
   position: relative;
 }
 
-#start-btn {
+.start-btn {
   grid-area: 4 / 5 / 6 / 7;
   justify-self: center;
   align-self: center;
   position: absolute;
 }
 
-#start-btn > button {
+.start-btn > button {
   font-family: "Games", sans-serif;
 
   background-color: rgb(0, 94, 255);
@@ -478,14 +476,14 @@ img {
   font-size: 2vw;
 }
 
-#rankings-btn {
+.rankings-btn {
   grid-area: 8 / 5 / 10 / 7;
   justify-self: center;
   align-self: center;
   position: absolute;
 }
 
-#rankings-btn > button {
+.rankings-btn > button {
   font-family: "Games", sans-serif;
 
   background-color: rgb(0, 94, 255);
@@ -498,7 +496,7 @@ img {
   font-size: 2vw;
 }
 
-#menu-fisher {
+.menu-fisher {
   width: 30%;
   top: 21%;
   left: 0;
@@ -506,7 +504,8 @@ img {
   margin-bottom: 0;
 }
 
-#how-to-play-text {
+#how-to-play-text,
+#game-over-text {
   grid-area: 4 / 5 / 9 / 7;
   z-index: 0;
   font-family: "Games", sans-serif;
@@ -536,6 +535,14 @@ img {
 }
 
 button:hover {
-  opacity: 0.9;
+  opacity: 0.8;
   cursor: pointer;
+  background-color: green;
+}
+
+#game-over-container > .start-btn {
+  grid-area: 6 / 5 / 8 / 7;
+  justify-self: center;
+  align-self: center;
+  position: absolute;
 }
