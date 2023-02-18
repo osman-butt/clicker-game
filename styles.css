@@ -1,3 +1,11 @@
+:root {
+  --gametime: 30s;
+  --timerglow: calc(var(--gametime) * 0.1);
+  --timerglow-delay: calc(var(--gametime) * 0.9);
+  --fish-move-duration: 1.5s;
+  --fish-start: -10%;
+}
+
 body {
   margin: 0;
 }
@@ -81,7 +89,7 @@ img {
     transform: translate(0, 0);
   }
   100% {
-    transform: translate(200vw, 0);
+    transform: translate(110vw, 0);
   }
 }
 
@@ -106,10 +114,10 @@ img {
 #fish1_container {
   width: 10%;
   position: absolute;
-  top: 45%;
-  left: -15%;
+  top: 32%;
+  left: var(--fish-start);
   animation: moveLeftRight;
-  animation-duration: 5s;
+  animation-duration: var(--fish-move-duration);
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
@@ -117,51 +125,83 @@ img {
 #fish2_container {
   width: 10%;
   position: absolute;
-  top: 80%;
-  left: 9%;
+  top: 39%;
+  left: var(--fish-start);
+  animation: moveLeftRight;
+  animation-duration: var(--fish-move-duration);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 #fish3_container {
   width: 10%;
   position: absolute;
-  top: 40%;
-  left: 50%;
+  top: 48%;
+  left: var(--fish-start);
+  animation: moveLeftRight;
+  animation-duration: var(--fish-move-duration);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 #fish4_container {
   width: 10%;
   position: absolute;
-  top: 70%;
-  left: 70%;
+  top: 57%;
+  left: var(--fish-start);
+  animation: moveLeftRight;
+  animation-duration: var(--fish-move-duration);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 #fish5_container {
   width: 10%;
   position: absolute;
-  top: 65%;
-  left: 40%;
+  top: 67%;
+  left: var(--fish-start);
+  animation: moveLeftRight;
+  animation-duration: var(--fish-move-duration);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
-/* #fish6_container {
+#fish6_container {
   width: 10%;
   position: absolute;
-  top: 34%;
-  left: 75%;
+  top: 72%;
+  left: var(--fish-start);
+  animation: moveLeftRight;
+  animation-duration: var(--fish-move-duration);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 #fish7_container {
   width: 10%;
   position: absolute;
-  top: 46%;
-  left: 60%;
+  top: 77%;
+  left: var(--fish-start);
+  animation: moveLeftRight;
+  animation-duration: var(--fish-move-duration);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 #fish8_container {
   width: 10%;
   position: absolute;
-  top: 90%;
-  left: 34%;
+  top: 83%;
+  left: var(--fish-start);
+  animation: moveLeftRight;
+  animation-duration: var(--fish-move-duration);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 #fish9_container {
   width: 10%;
   position: absolute;
-  top: 43%;
-  left: 25%;
-} */
+  top: 90%;
+  left: var(--fish-start);
+  animation: moveLeftRight;
+  animation-duration: var(--fish-move-duration);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
 
 #fisherman_boat_sprite {
   width: 100%;
@@ -220,7 +260,7 @@ img {
 #fish5_sprite {
   width: 100%;
 }
-/* #fish6_sprite {
+#fish6_sprite {
   width: 100%;
 }
 #fish7_sprite {
@@ -231,7 +271,7 @@ img {
 }
 #fish9_sprite {
   width: 100%;
-} */
+}
 
 /* #game_ui {
   display: grid;
@@ -263,6 +303,7 @@ img {
   text-align: center;
   align-self: center;
   justify-self: center;
+  /* z-index: 1; */
 }
 
 #score_logo {
@@ -282,9 +323,10 @@ img {
   border-radius: 1em;
   overflow: hidden;
   animation: glow;
-  animation-duration: 10s;
-  animation-delay: 50s;
+  animation-duration: var(--timerglow);
+  animation-delay: var(--timerglow-delay);
   animation-timing-function: linear;
+  /* z-index: 2; */
 }
 
 #life_board {
@@ -293,6 +335,7 @@ img {
   grid-template-columns: 1fr 1fr 1fr;
   align-self: center;
   gap: 0.5em;
+  /* z-index: 1; */
 }
 
 @keyframes glow {
@@ -335,7 +378,7 @@ img {
   height: 1em;
   background: linear-gradient(to bottom, red, #900);
   animation: timer-countdown;
-  animation-duration: 60s;
+  animation-duration: var(--gametime);
   animation-timing-function: linear;
   transform-origin: left center;
   animation-fill-mode: forwards;
