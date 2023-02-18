@@ -61,6 +61,11 @@ img {
   position: absolute;
   top: 55%;
   left: 55%;
+  /* animation: zoom-out;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-delay: 1s;
+  animation-fill-mode: forwards; */
 }
 #can_container {
   width: 5%;
@@ -111,6 +116,12 @@ img {
   }
   100% {
     transform: rotate(0);
+  }
+}
+
+@keyframes zoom-out {
+  100% {
+    transform: scale(0) rotate(365deg);
   }
 }
 
