@@ -61,11 +61,6 @@ img {
   position: absolute;
   top: 55%;
   left: 55%;
-  /* animation: zoom-out;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-delay: 1s;
-  animation-fill-mode: forwards; */
 }
 #can_container {
   width: 5%;
@@ -92,48 +87,11 @@ img {
   left: 10%;
 }
 
-@keyframes moveLeftRight {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(110vw, 0);
-  }
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0);
-  }
-  25% {
-    transform: rotate(30deg);
-  }
-  50% {
-    transform: rotate(0);
-  }
-  75% {
-    transform: rotate(30deg);
-  }
-  100% {
-    transform: rotate(0);
-  }
-}
-
-@keyframes zoom-out {
-  100% {
-    transform: scale(0) rotate(365deg);
-  }
-}
-
 #fish1_container {
   width: 10%;
   position: absolute;
   top: 32%;
   left: var(--fish-start);
-  animation: moveLeftRight;
-  animation-duration: var(--fish-move-duration);
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 
 #fish2_container {
@@ -141,80 +99,48 @@ img {
   position: absolute;
   top: 39%;
   left: var(--fish-start);
-  animation: moveLeftRight;
-  animation-duration: var(--fish-move-duration);
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 #fish3_container {
   width: 10%;
   position: absolute;
   top: 48%;
   left: var(--fish-start);
-  animation: moveLeftRight;
-  animation-duration: var(--fish-move-duration);
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 #fish4_container {
   width: 10%;
   position: absolute;
   top: 57%;
   left: var(--fish-start);
-  animation: moveLeftRight;
-  animation-duration: var(--fish-move-duration);
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 #fish5_container {
   width: 10%;
   position: absolute;
   top: 67%;
   left: var(--fish-start);
-  animation: moveLeftRight;
-  animation-duration: var(--fish-move-duration);
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 #fish6_container {
   width: 10%;
   position: absolute;
   top: 72%;
   left: var(--fish-start);
-  animation: moveLeftRight;
-  animation-duration: var(--fish-move-duration);
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 #fish7_container {
   width: 10%;
   position: absolute;
   top: 77%;
   left: var(--fish-start);
-  animation: moveLeftRight;
-  animation-duration: var(--fish-move-duration);
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 #fish8_container {
   width: 10%;
   position: absolute;
   top: 83%;
   left: var(--fish-start);
-  animation: moveLeftRight;
-  animation-duration: var(--fish-move-duration);
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 #fish9_container {
   width: 10%;
   position: absolute;
   top: 90%;
   left: var(--fish-start);
-  animation: moveLeftRight;
-  animation-duration: var(--fish-move-duration);
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 
 #fisherman_boat_sprite {
@@ -222,42 +148,18 @@ img {
 }
 #bag_sprite {
   width: 100%;
-  animation: rotate;
-  animation-duration: 10s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 #can_sprite {
   width: 100%;
-  animation: rotate;
-  animation-duration: 10s;
-  animation-delay: 0.75;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 #battery_sprite {
   width: 100%;
-  animation: rotate;
-  animation-duration: 10s;
-  animation-delay: 1;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 #bottle_sprite {
   width: 100%;
-  animation: rotate;
-  animation-duration: 10s;
-  animation-delay: 1.25s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 #plastic_sprite {
   width: 100%;
-  animation: rotate;
-  animation-duration: 10s;
-  animation-delay: 1.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
 }
 #fish1_sprite {
   width: 100%;
@@ -336,11 +238,6 @@ img {
   border: solid;
   border-radius: 1em;
   overflow: hidden;
-  animation: glow;
-  animation-duration: var(--timerglow);
-  animation-delay: var(--timerglow-delay);
-  animation-timing-function: linear;
-  /* z-index: 2; */
 }
 
 #life_board {
@@ -352,56 +249,9 @@ img {
   /* z-index: 1; */
 }
 
-@keyframes glow {
-  0% {
-    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
-  }
-  10% {
-    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
-  }
-  20% {
-    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
-  }
-  30% {
-    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
-  }
-  40% {
-    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
-  }
-  50% {
-    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
-  }
-  60% {
-    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
-  }
-  70% {
-    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
-  }
-  80% {
-    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
-  }
-  90% {
-    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
-  }
-  100% {
-    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
-  }
-}
-
 .timer div {
   height: 1em;
   background: linear-gradient(to bottom, red, #900);
-  animation: timer-countdown;
-  animation-duration: var(--gametime);
-  animation-timing-function: linear;
-  transform-origin: left center;
-  animation-fill-mode: forwards;
-}
-
-@keyframes timer-countdown {
-  100% {
-    transform: scaleX(0);
-  }
 }
 
 .hidden {
@@ -569,4 +419,138 @@ button:hover {
 
 .menu-fisher-sprite {
   width: 100%;
+}
+
+/* Animations */
+.rotate {
+  animation: rotate;
+  animation-duration: 10s;
+  animation-delay: 0.75;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(0);
+  }
+  75% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+.move_left_right {
+  animation: move_left_right;
+  animation-duration: var(--fish-move-duration);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes move_left_right {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(110vw, 0);
+  }
+}
+
+/* .move_right_left {
+  animation: move_right_left;
+  animation-duration: var(--fish-move-duration);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes move_right_left {
+  0% {
+    transform: translate(110vw, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+} */
+
+.zoom_out_rotate {
+  animation: zoom_out_rotate;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes zoom_out_rotate {
+  100% {
+    transform: scale(0) rotate(365deg);
+  }
+}
+
+.glow {
+  animation: glow;
+  animation-duration: var(--timerglow);
+  animation-delay: var(--timerglow-delay);
+  animation-timing-function: linear;
+}
+
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
+  }
+  10% {
+    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
+  }
+  20% {
+    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
+  }
+  30% {
+    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
+  }
+  40% {
+    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
+  }
+  60% {
+    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
+  }
+  70% {
+    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
+  }
+  80% {
+    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
+  }
+  90% {
+    filter: drop-shadow(0 0 16px rgb(255, 234, 0));
+  }
+  100% {
+    filter: drop-shadow(0 0 0 rgb(255, 234, 0));
+  }
+}
+
+.timer_countdown {
+  animation: timer-countdown;
+  animation-duration: var(--gametime);
+  animation-timing-function: linear;
+  transform-origin: left center;
+  animation-fill-mode: forwards;
+}
+
+@keyframes timer-countdown {
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+/* Class to pause animations */
+.paused {
+  animation-play-state: paused;
 }
