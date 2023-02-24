@@ -4,10 +4,12 @@ window.addEventListener("load", start);
 // Variables
 let points = 0;
 let lives = 0;
+let timeLeft = 10;
 
 function start() {
   console.log("start");
 
+  setInterval(updateCountdown, 1000);
   // Restart points and lives
   points = 0;
   lives = 3;
@@ -33,6 +35,7 @@ function start() {
   document
     .querySelector("#bag_container")
     .addEventListener("click", clickGarbage);
+  d;
 }
 
 function clickFish() {
@@ -156,7 +159,7 @@ function displayLives() {
 function incrementPoints() {
   console.log("Point added");
   points++;
-  if (points >= 50) {
+  if (points >= 20) {
     displayLevelComplete();
   } else {
     displayPoints();
@@ -179,4 +182,15 @@ function displayLevelComplete() {
 
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function updateCountdown() {
+  timeLeft--;
+  if (timeLeft == 0) {
+    if (points >= 3) {
+      displayLevelComplete();
+    } else {
+      displayGameOver();
+    }
+  }
 }
