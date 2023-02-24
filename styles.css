@@ -2,8 +2,10 @@
   --gametime: 30s;
   --timerglow: calc(var(--gametime) * 0.1);
   --timerglow-delay: calc(var(--gametime) * 0.9);
-  --fish-move-duration: 1.5s;
+  --fish-move-duration: 5s;
+  --garbage-move-duration: 6s;
   --fish-start: -10%;
+  --fish-width: 15%;
 }
 
 body {
@@ -60,7 +62,8 @@ img {
   width: 8%;
   position: absolute;
   top: 55%;
-  left: 55%;
+  /* left: 55%; */
+  left: -10%;
 }
 #can_container {
   width: 5%;
@@ -84,60 +87,60 @@ img {
   width: 5%;
   position: absolute;
   top: 65%;
-  left: 10%;
+  left: 95%;
 }
 
 #fish1_container {
-  width: 10%;
+  width: var(--fish-width);
   position: absolute;
-  top: 32%;
+  /* top: 32%; */
   left: var(--fish-start);
 }
 
 #fish2_container {
-  width: 10%;
+  width: var(--fish-width);
   position: absolute;
-  top: 39%;
+  /* top: 39%; */
   left: var(--fish-start);
 }
 #fish3_container {
-  width: 10%;
+  width: var(--fish-width);
   position: absolute;
-  top: 48%;
+  /* top: 48%; */
   left: var(--fish-start);
 }
 #fish4_container {
-  width: 10%;
+  width: var(--fish-width);
   position: absolute;
-  top: 57%;
+  /* top: 57%; */
   left: var(--fish-start);
 }
 #fish5_container {
-  width: 10%;
+  width: var(--fish-width);
   position: absolute;
-  top: 67%;
+  /* top: 67%; */
   left: var(--fish-start);
 }
 #fish6_container {
-  width: 10%;
+  width: var(--fish-width);
   position: absolute;
   top: 72%;
   left: var(--fish-start);
 }
 #fish7_container {
-  width: 10%;
+  width: var(--fish-width);
   position: absolute;
   top: 77%;
   left: var(--fish-start);
 }
 #fish8_container {
-  width: 10%;
+  width: var(--fish-width);
   position: absolute;
   top: 83%;
   left: var(--fish-start);
 }
 #fish9_container {
-  width: 10%;
+  width: var(--fish-width);
   position: absolute;
   top: 90%;
   left: var(--fish-start);
@@ -448,14 +451,15 @@ button:hover {
   }
 }
 
-.move_left_right {
-  animation: move_left_right;
+.move {
+  animation: move;
   animation-duration: var(--fish-move-duration);
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
 }
 
-@keyframes move_left_right {
+@keyframes move {
   0% {
     transform: translate(0, 0);
   }
@@ -464,21 +468,22 @@ button:hover {
   }
 }
 
-/* .move_right_left {
-  animation: move_right_left;
-  animation-duration: var(--fish-move-duration);
+.move_slow {
+  animation: move_slow;
+  animation-duration: var(--garbage-move-duration);
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
 }
 
-@keyframes move_right_left {
+@keyframes move_slow {
   0% {
-    transform: translate(110vw, 0);
-  }
-  100% {
     transform: translate(0, 0);
   }
-} */
+  100% {
+    transform: translate(200vw, 0);
+  }
+}
 
 .zoom_out_rotate {
   animation: zoom_out_rotate;
@@ -490,6 +495,22 @@ button:hover {
 @keyframes zoom_out_rotate {
   100% {
     transform: scale(0) rotate(365deg);
+  }
+}
+
+.zoom_out {
+  animation: zoom_out;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes zoom_out {
+  0% {
+    transform: scale(0.4);
+  }
+  100% {
+    transform: scale(0);
   }
 }
 

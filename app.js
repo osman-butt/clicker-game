@@ -13,256 +13,170 @@ function start() {
   lives = 3;
 
   // Start fish animations
-  for (let i = 1; i < 10; i++) {
-    document
-      .querySelector("#fish" + i + "_container")
-      .classList.add("move_left_right");
-  }
+  let topPositionFish = randomNumber(35, 89);
+  document.getElementById("fish1_container").style.top = topPositionFish + "%"; // Set CSS top property
+  console.log(topPositionFish);
 
-  //   Start garbage animations
-  document.querySelector("#bag_container").classList.add("rotate");
-  document.querySelector("#can_container").classList.add("rotate");
-  document.querySelector("#battery_container").classList.add("rotate");
-  document.querySelector("#bottle_container").classList.add("rotate");
-  document.querySelector("#plastic_container").classList.add("rotate");
+  document.querySelector("#fish1_container").classList.add("move");
 
-  // Click events
-  document.querySelector("#bag_container").addEventListener("click", clickBag);
-  document.querySelector("#can_container").addEventListener("click", clickCan);
+  // Start garbage animations
+  let topPositionGarbage = randomNumber(35, 89);
+  document.getElementById("bag_container").style.top = topPositionGarbage + "%";
+  document.querySelector("#bag_container").classList.add("move_slow");
+
+  // Click events Fish
   document
-    .querySelector("#battery_container")
-    .addEventListener("click", clickBattery);
-  document
-    .querySelector("#bottle_container")
-    .addEventListener("click", clickBottle);
-  document
-    .querySelector("#plastic_container")
-    .addEventListener("click", clickPlastic);
-}
+    .querySelector("#fish1_container")
+    .addEventListener("click", clickFish);
 
-function clickBag() {
-  console.log("Bag click");
-
-  // Remove addEventListener to avoid double click
+  // Click events Garbage
   document
     .querySelector("#bag_container")
-    .removeEventListener("click", clickBag);
+    .addEventListener("click", clickGarbage);
+}
+
+function clickFish() {
+  console.log("Fish is clicked");
+
+  // Remove eventlistner to prevent double click
+  document
+    .querySelector("#fish1_container")
+    .removeEventListener("click", clickFish);
+
+  // Pause fish
+  document.querySelector("#fish1_container").classList.add("paused");
+
+  // Disappear animation
+  document.querySelector("#fish1_sprite").classList.add("zoom_out_rotate");
+
+  // Spawn fish
+  document
+    .querySelector("#fish1_container")
+    .addEventListener("animationend", spawnFish);
+
+  // Remove one life
+  decrementLives();
+}
+
+function spawnFish() {
+  console.log("New fish spawned");
+
+  // Remove eventlistner
+  document
+    .querySelector("#fish1_container")
+    .removeEventListener("animationend", spawnFish);
+
+  // Remove pause and disappear animation
+  document.querySelector("#fish1_sprite").classList.remove("zoom_out_rotate");
+  document.querySelector("#fish1_container").classList.remove("paused");
+
+  // Random start
+  let topPosition = randomNumber(35, 89);
+  document.getElementById("fish1_container").style.top = topPosition + "%";
+
+  // Restart animation
+  document.querySelector("#fish1_container").classList.remove("move");
+  document.querySelector("#fish1_container").offsetHeight;
+  document.querySelector("#fish1_container").classList.add("move");
+
+  // Make clickable again
+  document
+    .querySelector("#fish1_container")
+    .addEventListener("click", clickFish);
+}
+
+function clickGarbage() {
+  console.log("Garbage is clicked");
+
+  // Remove eventlistner to prevent double click
+  document
+    .querySelector("#bag_container")
+    .removeEventListener("click", clickGarbage);
 
   // Pause animation
   document.querySelector("#bag_container").classList.add("paused");
 
-  // Add disappear animation
-  document.querySelector("#bag_sprite").classList.add("zoom_out_rotate");
+  // Disappear animation
+  document.querySelector("#bag_sprite").classList.add("hidden");
+  document.querySelector("#star_bag_sprite").classList.remove("hidden");
+  document.querySelector("#star_bag_sprite").offsetHeight;
+  document.querySelector("#star_bag_sprite").classList.add("zoom_out");
 
-  // Restart animation
+  // Spawn garbage
   document
     .querySelector("#bag_container")
-    .addEventListener("animationend", bagRestart);
+    .addEventListener("animationend", spawnGarbage);
 
-  // Add points
+  // Add point
   incrementPoints();
 }
 
-function bagRestart() {
-  console.log("Bag restart");
-  // Remove addEventListener
+function spawnGarbage() {
+  console.log("New garbage spawned");
+
+  // Remove eventlistner
   document
     .querySelector("#bag_container")
-    .removeEventListener("animationend", bagRestart);
+    .removeEventListener("animationend", spawnGarbage);
 
   // Remove pause and disappear animation
-  document.querySelector("#bag_sprite").classList.remove("zoom_out_rotate");
+  document.querySelector("#star_bag_sprite").classList.add("hidden");
+  document.querySelector("#bag_sprite").classList.remove("hidden");
   document.querySelector("#bag_container").classList.remove("paused");
 
+  // Random start
+  let topPosition = randomNumber(35, 89);
+  document.getElementById("bag_container").style.top = topPosition + "%";
+
   // Restart animation
-  document.querySelector("#bag_container").classList.remove("rotate");
+  document.querySelector("#bag_container").classList.remove("move_slow");
   document.querySelector("#bag_container").offsetHeight;
-  document.querySelector("#bag_container").classList.add("rotate");
-
-  // Make clickable again
-  document.querySelector("#bag_container").addEventListener("click", clickBag);
-}
-
-function clickCan() {
-  console.log("Can click");
-  // Remove addEventListener to avoid double click
-  document
-    .querySelector("#can_container")
-    .removeEventListener("click", clickCan);
-
-  // Pause animation
-  document.querySelector("#can_container").classList.add("paused");
-
-  // Add disappear animation
-  document.querySelector("#can_sprite").classList.add("zoom_out_rotate");
-
-  // Restart animation
-  document
-    .querySelector("#can_container")
-    .addEventListener("animationend", canRestart);
-
-  // Add points
-  incrementPoints();
-}
-
-function canRestart() {
-  console.log("Can restart");
-  // Remove addEventListener
-  document
-    .querySelector("#can_container")
-    .removeEventListener("animationend", canRestart);
-
-  // Remove pause and disappear animation
-  document.querySelector("#can_sprite").classList.remove("zoom_out_rotate");
-  document.querySelector("#can_container").classList.remove("paused");
-
-  // Restart animation
-  document.querySelector("#can_container").classList.remove("rotate");
-  document.querySelector("#can_container").offsetHeight;
-  document.querySelector("#can_container").classList.add("rotate");
-
-  // Make clickable again
-  document.querySelector("#can_container").addEventListener("click", clickCan);
-}
-
-function clickBattery() {
-  console.log("Battery click");
-  // Remove addEventListener to avoid double click
-  document
-    .querySelector("#battery_container")
-    .removeEventListener("click", clickBattery);
-
-  // Pause animation
-  document.querySelector("#battery_container").classList.add("paused");
-
-  // Add disappear animation
-  document.querySelector("#battery_sprite").classList.add("zoom_out_rotate");
-
-  // Restart animation
-  document
-    .querySelector("#battery_container")
-    .addEventListener("animationend", batteryRestart);
-
-  // Add points
-  incrementPoints();
-}
-
-function batteryRestart() {
-  console.log("Battery restart");
-  // Remove addEventListener
-  document
-    .querySelector("#battery_container")
-    .removeEventListener("animationend", batteryRestart);
-
-  // Remove pause and disappear animation
-  document.querySelector("#battery_sprite").classList.remove("zoom_out_rotate");
-  document.querySelector("#battery_container").classList.remove("paused");
-
-  // Restart animation
-  document.querySelector("#battery_container").classList.remove("rotate");
-  document.querySelector("#battery_container").offsetHeight;
-  document.querySelector("#battery_container").classList.add("rotate");
+  document.querySelector("#bag_container").classList.add("move_slow");
 
   // Make clickable again
   document
-    .querySelector("#battery_container")
-    .addEventListener("click", clickBattery);
+    .querySelector("#bag_container")
+    .addEventListener("click", clickGarbage);
 }
 
-function clickBottle() {
-  console.log("Bottle click");
-  // Remove addEventListener to avoid double click
-  document
-    .querySelector("#bottle_container")
-    .removeEventListener("click", clickBottle);
-
-  // Pause animation
-  document.querySelector("#bottle_container").classList.add("paused");
-
-  // Add disappear animation
-  document.querySelector("#bottle_sprite").classList.add("zoom_out_rotate");
-
-  // Restart animation
-  document
-    .querySelector("#bottle_container")
-    .addEventListener("animationend", bottleRestart);
-
-  // Add points
-  incrementPoints();
+function decrementLives() {
+  console.log("Lives decremented");
+  if (lives > 1) {
+    displayLives();
+    lives--;
+  } else {
+    displayGameOver();
+  }
 }
 
-function bottleRestart() {
-  console.log("Bottle restart");
-  // Remove addEventListener
-  document
-    .querySelector("#bottle_container")
-    .removeEventListener("animationend", bottleRestart);
-
-  // Remove pause and disappear animation
-  document.querySelector("#bottle_sprite").classList.remove("zoom_out_rotate");
-  document.querySelector("#bottle_container").classList.remove("paused");
-
-  // Restart animation
-  document.querySelector("#bottle_container").classList.remove("rotate");
-  document.querySelector("#bottle_container").offsetHeight;
-  document.querySelector("#bottle_container").classList.add("rotate");
-
-  // Make clickable again
-  document
-    .querySelector("#bottle_container")
-    .addEventListener("click", clickBottle);
-}
-
-function clickPlastic() {
-  console.log("Plastic click");
-  // Remove addEventListener to avoid double click
-  document
-    .querySelector("#plastic_container")
-    .removeEventListener("click", clickPlastic);
-
-  // Pause animation
-  document.querySelector("#plastic_container").classList.add("paused");
-
-  // Add disappear animation
-  document.querySelector("#plastic_sprite").classList.add("zoom_out_rotate");
-
-  // Restart animation
-  document
-    .querySelector("#plastic_container")
-    .addEventListener("animationend", plasticRestart);
-
-  // Add points
-  incrementPoints();
-}
-
-function plasticRestart() {
-  console.log("Bottle restart");
-  // Remove addEventListener
-  document
-    .querySelector("#plastic_container")
-    .removeEventListener("animationend", plasticRestart);
-
-  // Remove pause and disappear animation
-  document.querySelector("#plastic_sprite").classList.remove("zoom_out_rotate");
-  document.querySelector("#plastic_container").classList.remove("paused");
-
-  // Restart animation
-  document.querySelector("#plastic_container").classList.remove("rotate");
-  document.querySelector("#plastic_container").offsetHeight;
-  document.querySelector("#plastic_container").classList.add("rotate");
-
-  // Make clickable again
-  document
-    .querySelector("#plastic_container")
-    .addEventListener("click", clickPlastic);
+function displayLives() {
+  document.querySelector("#life" + lives).classList.add("hidden");
 }
 
 function incrementPoints() {
   console.log("Point added");
   points++;
-  displayPoints();
+  if (points >= 50) {
+    displayLevelComplete();
+  } else {
+    displayPoints();
+  }
 }
 
 function displayPoints() {
   document.querySelector("#score").textContent = points;
+}
+
+function displayGameOver() {
+  document.querySelector("#game").classList.add("hidden");
+  document.querySelector("#game-over").classList.remove("hidden");
+}
+
+function displayLevelComplete() {
+  document.querySelector("#game").classList.add("hidden");
+  document.querySelector("#level-complete").classList.remove("hidden");
+}
+
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
 }
