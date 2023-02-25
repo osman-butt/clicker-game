@@ -4,20 +4,25 @@ window.addEventListener("load", start);
 // Variables
 let points = 0;
 let lives = 0;
-let timeLeft = 10;
+let timeLeft = 0;
+let gametime = 0;
 
 function start() {
   console.log("start");
 
   setInterval(updateCountdown, 1000);
-  // Restart points and lives
+  // Restart points, lives and timer
   points = 0;
   lives = 3;
+  timeLeft = 60;
+  gametime = timeLeft + "s";
+
+  // set CSS gametime var
+  document.querySelector(":root").style.setProperty("--gametime", gametime);
 
   // Start fish animations
   let topPositionFish = randomNumber(35, 89);
   document.getElementById("fish1_container").style.top = topPositionFish + "%"; // Set CSS top property
-  console.log(topPositionFish);
 
   document.querySelector("#fish1_container").classList.add("move");
 
@@ -30,12 +35,32 @@ function start() {
   document
     .querySelector("#fish1_container")
     .addEventListener("click", clickFish);
+  // Random start after each iteration
+  document
+    .querySelector("#fish1_container")
+    .addEventListener("animationiteration", randomFishStart);
 
   // Click events Garbage
   document
     .querySelector("#bag_container")
     .addEventListener("click", clickGarbage);
-  d;
+
+  // Random start after each iteration
+  document
+    .querySelector("#bag_container")
+    .addEventListener("animationiteration", randomGarbageStart);
+}
+
+function randomFishStart() {
+  let topPosition = randomNumber(35, 89);
+  document.getElementById("fish1_container").style.top = topPosition + "%";
+  console.log("random fish position: " + topPosition);
+}
+
+function randomGarbageStart() {
+  let topPosition = randomNumber(35, 89);
+  document.getElementById("bag_container").style.top = topPosition + "%";
+  console.log("random garbage position: " + topPosition);
 }
 
 function clickFish() {

@@ -1,5 +1,5 @@
 :root {
-  --gametime: 30s;
+  /* --gametime: 30s; */
   --timerglow: calc(var(--gametime) * 0.1);
   --timerglow-delay: calc(var(--gametime) * 0.9);
   --fish-move-duration: 5s;
