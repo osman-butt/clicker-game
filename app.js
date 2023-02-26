@@ -23,13 +23,16 @@ function start() {
   // Start fish animations
   let topPositionFish = randomNumber(35, 89);
   document.getElementById("fish1_container").style.top = topPositionFish + "%"; // Set CSS top property
-
   document.querySelector("#fish1_container").classList.add("move");
 
   // Start garbage animations
-  let topPositionGarbage = randomNumber(35, 89);
-  document.getElementById("bag_container").style.top = topPositionGarbage + "%";
+  let topPositionBag = randomNumber(35, 89);
+  document.getElementById("bag_container").style.top = topPositionBag + "%";
   document.querySelector("#bag_container").classList.add("move_slow");
+
+  let topPositionCan = randomNumber(35, 89);
+  document.getElementById("can_container").style.top = topPositionCan + "%";
+  document.querySelector("#can_container").classList.add("move_slow");
 
   // Click events Fish
   document
@@ -38,7 +41,7 @@ function start() {
   // Random start after each iteration
   document
     .querySelector("#fish1_container")
-    .addEventListener("animationiteration", randomFishStart);
+    .addEventListener("animationiteration", randomStart);
 
   // Click events Garbage
   document
@@ -48,92 +51,42 @@ function start() {
   // Random start after each iteration
   document
     .querySelector("#bag_container")
-    .addEventListener("animationiteration", randomGarbageStart);
+    .addEventListener("animationiteration", randomStart);
+
+  // Click events Garbage
+  document
+    .querySelector("#can_container")
+    .addEventListener("click", clickGarbage);
+
+  // Random start after each iteration
+  document
+    .querySelector("#can_container")
+    .addEventListener("animationiteration", randomStart);
 }
 
-function randomFishStart() {
+function randomStart() {
   let topPosition = randomNumber(35, 89);
-  document.getElementById("fish1_container").style.top = topPosition + "%";
-  console.log("random fish position: " + topPosition);
-}
-
-function randomGarbageStart() {
-  let topPosition = randomNumber(35, 89);
-  document.getElementById("bag_container").style.top = topPosition + "%";
-  console.log("random garbage position: " + topPosition);
-}
-
-function clickFish() {
-  console.log("Fish is clicked");
-
-  // Remove eventlistner to prevent double click
-  document
-    .querySelector("#fish1_container")
-    .removeEventListener("click", clickFish);
-
-  // Pause fish
-  document.querySelector("#fish1_container").classList.add("paused");
-
-  // Disappear animation
-  document.querySelector("#fish1_sprite").classList.add("zoom_out_rotate");
-
-  // Spawn fish
-  document
-    .querySelector("#fish1_container")
-    .addEventListener("animationend", spawnFish);
-
-  // Remove one life
-  decrementLives();
-}
-
-function spawnFish() {
-  console.log("New fish spawned");
-
-  // Remove eventlistner
-  document
-    .querySelector("#fish1_container")
-    .removeEventListener("animationend", spawnFish);
-
-  // Remove pause and disappear animation
-  document.querySelector("#fish1_sprite").classList.remove("zoom_out_rotate");
-  document.querySelector("#fish1_container").classList.remove("paused");
-
-  // Random start
-  let topPosition = randomNumber(35, 89);
-  document.getElementById("fish1_container").style.top = topPosition + "%";
-
-  // Restart animation
-  document.querySelector("#fish1_container").classList.remove("move");
-  document.querySelector("#fish1_container").offsetHeight;
-  document.querySelector("#fish1_container").classList.add("move");
-
-  // Make clickable again
-  document
-    .querySelector("#fish1_container")
-    .addEventListener("click", clickFish);
+  this.style.top = topPosition + "%";
+  console.log("THIS random garbage position: " + topPosition);
 }
 
 function clickGarbage() {
   console.log("Garbage is clicked");
 
   // Remove eventlistner to prevent double click
-  document
-    .querySelector("#bag_container")
-    .removeEventListener("click", clickGarbage);
+  this.removeEventListener("click", clickGarbage);
 
   // Pause animation
-  document.querySelector("#bag_container").classList.add("paused");
+  this.classList.add("paused");
 
   // Disappear animation
-  document.querySelector("#bag_sprite").classList.add("hidden");
-  document.querySelector("#star_bag_sprite").classList.remove("hidden");
-  document.querySelector("#star_bag_sprite").offsetHeight;
-  document.querySelector("#star_bag_sprite").classList.add("zoom_out");
+  this.querySelector("[id$='_sprite']").classList.add("hidden");
+  this.querySelector("[id$='_star']").classList.remove("hidden");
+  this.querySelector("[id$='_star']").offsetHeight;
+  this.querySelector("[id$='_star']").classList.add("zoom_out");
 
   // Spawn garbage
-  document
-    .querySelector("#bag_container")
-    .addEventListener("animationend", spawnGarbage);
+  this.addEventListener("animationend", spawnGarbage);
 
   // Add point
   incrementPoints();
@@ -143,28 +96,66 @@ function spawnGarbage() {
   console.log("New garbage spawned");
 
   // Remove eventlistner
-  document
-    .querySelector("#bag_container")
-    .removeEventListener("animationend", spawnGarbage);
+  this.removeEventListener("animationend", spawnGarbage);
 
   // Remove pause and disappear animation
-  document.querySelector("#star_bag_sprite").classList.add("hidden");
-  document.querySelector("#bag_sprite").classList.remove("hidden");
-  document.querySelector("#bag_container").classList.remove("paused");
+  this.querySelector("[id$='_star']").classList.add("hidden");
+  this.querySelector("[id$='_sprite']").classList.remove("hidden");
+  this.classList.remove("paused");
 
   // Random start
   let topPosition = randomNumber(35, 89);
-  document.getElementById("bag_container").style.top = topPosition + "%";
+  this.style.top = topPosition + "%";
 
   // Restart animation
-  document.querySelector("#bag_container").classList.remove("move_slow");
-  document.querySelector("#bag_container").offsetHeight;
-  document.querySelector("#bag_container").classList.add("move_slow");
+  this.classList.remove("move_slow");
+  this.offsetHeight;
+  this.classList.add("move_slow");
 
   // Make clickable again
-  document
-    .querySelector("#bag_container")
-    .addEventListener("click", clickGarbage);
+  this.addEventListener("click", clickGarbage);
+}
+
+function clickFish() {
+  console.log("Fish is clicked");
+
+  // Remove eventlistner to prevent double click
+  this.removeEventListener("click", clickFish);
+
+  // Pause fish
+  this.classList.add("paused");
+
+  // Disappear animation
+  this.querySelector("[id$='_sprite']").classList.add("zoom_out_rotate");
+
+  // Spawn fish
+  this.addEventListener("animationend", spawnFish);
+
+  // Remove one life
+  decrementLives();
+}
+
+function spawnFish() {
+  console.log("New fish spawned");
+
+  // Remove eventlistner
+  this.removeEventListener("animationend", spawnFish);
+
+  // Remove pause and disappear animation
+  this.querySelector("[id$='_sprite']").classList.remove("zoom_out_rotate");
+  this.classList.remove("paused");
+
+  // Random start
+  let topPosition = randomNumber(35, 89);
+  this.style.top = topPosition + "%";
+
+  // Restart animation
+  this.classList.remove("move");
+  this.offsetHeight;
+  this.classList.add("move");
+
+  // Make clickable again
+  this.addEventListener("click", clickFish);
 }
 
 function decrementLives() {
