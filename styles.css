@@ -4,7 +4,7 @@
   --timerglow-delay: calc(var(--gametime) * 0.9);
   --fish-move-duration: 5s;
   --garbage-move-duration: 6s;
-  --fish-start: -10%;
+  --fish-start: -15%;
   --fish-width: 15%;
 }
 
@@ -74,20 +74,20 @@ img {
 #battery_container {
   width: 3%;
   position: absolute;
-  top: 43%;
-  left: 90%;
+  /* top: 43%; */
+  left: -10%;
 }
 #bottle_container {
   width: 8%;
   position: absolute;
-  top: 48%;
-  left: 10%;
+  /* top: 48%; */
+  left: -10%;
 }
 #plastic_container {
   width: 5%;
   position: absolute;
-  top: 65%;
-  left: 95%;
+  /* top: 65%; */
+  left: -10%;
 }
 
 #fish1_container {
