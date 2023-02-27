@@ -6,6 +6,7 @@ let points = 0;
 let lives = 0;
 let timeLeft = 0;
 let gametime = 0;
+const pointsToWin = 50;
 
 function start() {
   console.log("start");
@@ -252,11 +253,7 @@ function displayLives() {
 function incrementPoints() {
   console.log("Point added");
   points++;
-  if (points >= 20) {
-    displayLevelComplete();
-  } else {
-    displayPoints();
-  }
+  displayPoints();
 }
 
 function displayPoints() {
@@ -326,12 +323,18 @@ function endGame() {
 }
 
 function displayGameOver() {
+  console.log("Game over");
+  console.log("Gametime: " + gametime);
+  console.log("timeleft: " + timeLeft);
   document.querySelector("#game").classList.add("hidden");
   document.querySelector("#game-over").classList.remove("hidden");
   endGame();
 }
 
 function displayLevelComplete() {
+  console.log("Level complete");
+  console.log("Gametime: " + gametime);
+  console.log("timeleft: " + timeLeft);
   document.querySelector("#game").classList.add("hidden");
   document.querySelector("#level-complete").classList.remove("hidden");
   endGame();
@@ -340,7 +343,7 @@ function displayLevelComplete() {
 function updateCountdown() {
   timeLeft--;
   if (timeLeft == 0) {
-    if (points >= 3) {
+    if (points >= pointsToWin) {
       displayLevelComplete();
     } else {
       displayGameOver();
