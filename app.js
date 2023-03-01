@@ -1,155 +1,92 @@
 "use strict";
-window.addEventListener("load", start);
+window.addEventListener("load", initApp);
 
 // Variables
 let points = 0;
 let lives = 0;
 let timeLeft = 0;
 let gametime = 0;
-const pointsToWin = 50;
+const pointsToWin = 1;
+
+function initApp() {
+  console.log("Initialize app");
+  document.querySelector("#menu-how-to-play-container").classList.add("hidden");
+  document.querySelector("#menu-container").classList.remove("hidden");
+  document.querySelector("#start").classList.remove("hidden");
+  document.querySelector("#start").offsetHeight;
+  document.querySelector(".start-btn").addEventListener("click", start);
+  document
+    .querySelector(".how-to-play-btn")
+    .addEventListener("click", howToPlay);
+
+  // load sound
+  document.querySelector("#sound_fish").load();
+  document.querySelector("#sound_garbage").load();
+  document.querySelector("#sound_gameover").load();
+  document.querySelector("#sound_play").load();
+  document.querySelector("#sound_complete").load();
+}
+
+function howToPlay() {
+  document
+    .querySelector(".how-to-play-btn")
+    .removeEventListener("click", howToPlay);
+  document.querySelector("#menu-container").classList.add("hidden");
+  document
+    .querySelector("#menu-how-to-play-container")
+    .classList.remove("hidden");
+  document.querySelector("#start").offsetHeight;
+  document.querySelector(".back-btn").addEventListener("click", initApp);
+}
 
 function start() {
   console.log("start");
-
+  document.querySelector("#sound_play").play();
   setInterval(updateCountdown, 1000);
   // Restart points, lives and timer
   points = 0;
   lives = 3;
-  timeLeft = 60;
+  timeLeft = 10;
   gametime = timeLeft + "s";
 
-  // Variables
-  let animationDelayMaxFish = 6;
-  let animationDelayMaxGarbage = 7;
+  // Set timer
+  document.querySelector("#timebar").classList.add("scaleX");
+
+  // Remove eventlistner
+  document.querySelector(".start-btn").removeEventListener("click", start);
 
   // set CSS gametime var
   document.querySelector(":root").style.setProperty("--gametime", gametime);
 
-  // Start fish animations
-  let topPositionFish1 = randomNumber(35, 89, true);
-  document.getElementById("fish1_container").style.top = topPositionFish1 + "%"; // Set CSS top property
-  let animationDelayFish1 = randomNumber(0, animationDelayMaxFish, false);
-  document.getElementById("fish1_container").style.animationDelay =
-    animationDelayFish1 + "s"; // Set CSS animation delay
-  document.querySelector("#fish1_container").classList.add("move");
+  // Start game
+  document.querySelector("#start").classList.add("hidden");
+  document.querySelector("#game").classList.remove("hidden");
 
-  let topPositionFish2 = randomNumber(35, 89, true);
-  document.getElementById("fish2_container").style.top = topPositionFish2 + "%"; // Set CSS top property
-  let animationDelayFish2 = randomNumber(0, animationDelayMaxFish, false);
-  document.getElementById("fish2_container").style.animationDelay =
-    animationDelayFish2 + "s"; // Set CSS animation delay
-  document.querySelector("#fish2_container").classList.add("move");
-
-  let topPositionFish3 = randomNumber(35, 89, true);
-  document.getElementById("fish3_container").style.top = topPositionFish3 + "%"; // Set CSS top property
-  let animationDelayFish3 = randomNumber(0, animationDelayMaxFish, false);
-  document.getElementById("fish3_container").style.animationDelay =
-    animationDelayFish3 + "s"; // Set CSS animation delay
-  document.querySelector("#fish3_container").classList.add("move");
-
-  let topPositionFish4 = randomNumber(35, 89, true);
-  document.getElementById("fish4_container").style.top = topPositionFish4 + "%"; // Set CSS top property
-  let animationDelayFish4 = randomNumber(0, animationDelayMaxFish, false);
-  document.getElementById("fish4_container").style.animationDelay =
-    animationDelayFish4 + "s"; // Set CSS animation delay
-  document.querySelector("#fish4_container").classList.add("move");
-
-  // Start garbage animations
-  let topPositionBag = randomNumber(35, 89, true);
-  document.getElementById("bag_container").style.top = topPositionBag + "%"; // Set CSS top property
-  let animationDelayBag = randomNumber(0, animationDelayMaxGarbage, false);
-  document.getElementById("bag_container").style.animationDelay =
-    animationDelayBag + "s"; // Set CSS animation delay
-  document.querySelector("#bag_container").classList.add("move_slow");
-
-  let topPositionCan = randomNumber(35, 89, true);
-  document.getElementById("can_container").style.top = topPositionCan + "%"; // Set CSS top property
-  let animationDelayCan = randomNumber(0, animationDelayMaxGarbage, false);
-  document.getElementById("can_container").style.animationDelay =
-    animationDelayCan + "s"; // Set CSS animation delay
-  document.querySelector("#can_container").classList.add("move_slow");
-
-  let topPositionBattery = randomNumber(35, 89, true);
-  document.getElementById("battery_container").style.top =
-    topPositionBattery + "%"; // Set CSS top property
-  let animationDelayBattery = randomNumber(0, animationDelayMaxGarbage, false);
-  document.getElementById("battery_container").style.animationDelay =
-    animationDelayBattery + "s"; // Set CSS animation delay
-  document.querySelector("#battery_container").classList.add("move_slow");
-
-  let topPositionBottle = randomNumber(35, 89, true);
-  document.getElementById("bottle_container").style.top =
-    topPositionBottle + "%"; // Set CSS top property
-  let animationDelayBottle = randomNumber(0, animationDelayMaxGarbage, false);
-  document.getElementById("bottle_container").style.animationDelay =
-    animationDelayBottle + "s"; // Set CSS animation delay
-  document.querySelector("#bottle_container").classList.add("move_slow");
-
-  // Click events Fish
-  document
-    .querySelector("#fish1_container")
-    .addEventListener("click", clickFish);
-  document
-    .querySelector("#fish2_container")
-    .addEventListener("click", clickFish);
-  document
-    .querySelector("#fish3_container")
-    .addEventListener("click", clickFish);
-  document
-    .querySelector("#fish4_container")
-    .addEventListener("click", clickFish);
-
-  // Random start after each iteration
-  document
-    .querySelector("#fish1_container")
-    .addEventListener("animationiteration", randomStart);
-  document
-    .querySelector("#fish2_container")
-    .addEventListener("animationiteration", randomStart);
-  document
-    .querySelector("#fish3_container")
-    .addEventListener("animationiteration", randomStart);
-  document
-    .querySelector("#fish4_container")
-    .addEventListener("animationiteration", randomStart);
-
-  // Click events Garbage
-  document
-    .querySelector("#bag_container")
-    .addEventListener("click", clickGarbage);
-  document
-    .querySelector("#can_container")
-    .addEventListener("click", clickGarbage);
-  document
-    .querySelector("#battery_container")
-    .addEventListener("click", clickGarbage);
-  document
-    .querySelector("#bottle_container")
-    .addEventListener("click", clickGarbage);
-
-  // Random start after each iteration
-  document
-    .querySelector("#bag_container")
-    .addEventListener("animationiteration", randomStart);
-  document
-    .querySelector("#can_container")
-    .addEventListener("animationiteration", randomStart);
-  document
-    .querySelector("#battery_container")
-    .addEventListener("animationiteration", randomStart);
-  document
-    .querySelector("#bottle_container")
-    .addEventListener("animationiteration", randomStart);
+  animationStart();
+  animationClick();
+  animationRestart();
 }
 
 function randomStart() {
-  let topPosition = randomNumber(35, 89, true);
-  this.style.top = topPosition + "%";
-  console.log("Random start position: " + topPosition);
+  let pos = randomNumber(1, 5, true);
+  this.classList.remove(
+    "position1",
+    "position2",
+    "position3",
+    "position4",
+    "position5"
+  );
+  this.offsetHeight;
+  this.classList.add("position" + pos);
+  console.log(this + "Random start position: " + pos);
 }
 
 function clickGarbage() {
   console.log("Garbage is clicked");
+
+  // Sound effect
+  document.querySelector("#sound_garbage").currentTime = 0;
+  document.querySelector("#sound_garbage").play();
 
   // Remove eventlistner to prevent double click
   this.removeEventListener("click", clickGarbage);
@@ -182,8 +119,7 @@ function spawnGarbage() {
   this.classList.remove("paused");
 
   // Random start
-  let topPosition = randomNumber(35, 89, true);
-  this.style.top = topPosition + "%";
+  randomStart.call(this);
 
   // Restart animation
   this.classList.remove("move_slow");
@@ -196,6 +132,9 @@ function spawnGarbage() {
 
 function clickFish() {
   console.log("Fish is clicked");
+  // Sound effect
+  document.querySelector("#sound_fish").currentTime = 0;
+  document.querySelector("#sound_fish").play();
 
   // Remove eventlistner to prevent double click
   this.removeEventListener("click", clickFish);
@@ -224,8 +163,7 @@ function spawnFish() {
   this.classList.remove("paused");
 
   // Random start
-  let topPosition = randomNumber(35, 89, true);
-  this.style.top = topPosition + "%";
+  randomStart.call(this);
 
   // Restart animation
   this.classList.remove("move");
@@ -260,16 +198,212 @@ function displayPoints() {
   document.querySelector("#score").textContent = points;
 }
 
+function displayGameOver() {
+  console.log("Game over");
+  console.log("Gametime: " + gametime);
+  console.log("timeleft: " + timeLeft);
+  // game over sound
+  document.querySelector("#sound_play").pause();
+  document.querySelector("#sound_play").currentTime = 0;
+  document.querySelector("#sound_gameover").play();
+  document.querySelector("#game").classList.add("hidden");
+  document.querySelector("#game-over").classList.remove("hidden");
+  endGame();
+}
+
+function displayLevelComplete() {
+  // level complete sound
+  document.querySelector("#sound_play").pause();
+  document.querySelector("#sound_play").currentTime = 0;
+  document.querySelector("#sound_complete").play();
+  console.log("Level complete");
+  console.log("Gametime: " + gametime);
+  console.log("timeleft: " + timeLeft);
+  document.querySelector("#game").classList.add("hidden");
+  document.querySelector("#level-complete").classList.remove("hidden");
+  endGame();
+}
+
+function updateCountdown() {
+  timeLeft--;
+  if (timeLeft == 0) {
+    if (points >= pointsToWin) {
+      displayLevelComplete();
+    } else {
+      displayGameOver();
+    }
+  }
+}
+
+function randomNumber(min, max, integer = false) {
+  if (integer) {
+    return Math.floor(Math.random() * max) + min;
+  } else {
+    return Math.random() * max + min;
+  }
+}
+
+function animationStart() {
+  // Variables
+  let animationDelayMaxFish = 6;
+  let animationDelayMaxGarbage = 7;
+
+  // Start fish animations
+  let pos1 = randomNumber(1, 5, true);
+  document.querySelector("#fish1_container").classList.add("position" + pos1);
+  console.log("Fish1 position = " + pos1);
+  // let topPositionFish1 = randomNumber(35, 89, true);
+  // document.getElementById("fish1_container").style.top = topPositionFish1 + "%"; // Set CSS top property
+  let animationDelayFish1 = randomNumber(0, animationDelayMaxFish, false);
+  document.getElementById("fish1_container").style.animationDelay =
+    animationDelayFish1 + "s"; // Set CSS animation delay
+  document.querySelector("#fish1_container").classList.add("move");
+  document.querySelector("#fish1_container").classList.add("position1");
+
+  let pos2 = randomNumber(1, 5, true);
+  document.querySelector("#fish2_container").classList.add("position" + pos2);
+  console.log("Fish2 position = " + pos2);
+  // let topPositionFish2 = randomNumber(35, 89, true);
+  // document.getElementById("fish2_container").style.top = topPositionFish2 + "%"; // Set CSS top property
+  let animationDelayFish2 = randomNumber(0, animationDelayMaxFish, false);
+  document.getElementById("fish2_container").style.animationDelay =
+    animationDelayFish2 + "s"; // Set CSS animation delay
+  document.querySelector("#fish2_container").classList.add("move");
+
+  let pos3 = randomNumber(1, 5, true);
+  document.querySelector("#fish3_container").classList.add("position" + pos3);
+  console.log("Fish3 position = " + pos3);
+  // let topPositionFish3 = randomNumber(35, 89, true);
+  // document.getElementById("fish3_container").style.top = topPositionFish3 + "%"; // Set CSS top property
+  let animationDelayFish3 = randomNumber(0, animationDelayMaxFish, false);
+  document.getElementById("fish3_container").style.animationDelay =
+    animationDelayFish3 + "s"; // Set CSS animation delay
+  document.querySelector("#fish3_container").classList.add("move");
+
+  let pos4 = randomNumber(1, 5, true);
+  document.querySelector("#fish4_container").classList.add("position" + pos4);
+  console.log("Fish4 position = " + pos4);
+  // let topPositionFish4 = randomNumber(35, 89, true);
+  // document.getElementById("fish4_container").style.top = topPositionFish4 + "%"; // Set CSS top property
+  let animationDelayFish4 = randomNumber(0, animationDelayMaxFish, false);
+  document.getElementById("fish4_container").style.animationDelay =
+    animationDelayFish4 + "s"; // Set CSS animation delay
+  document.querySelector("#fish4_container").classList.add("move");
+
+  // Start garbage animations
+  let pos5 = randomNumber(1, 5, true);
+  document.querySelector("#bag_container").classList.add("position" + pos5);
+  console.log("Bag position = " + pos5);
+  // let topPositionBag = randomNumber(35, 89, true);
+  // document.getElementById("bag_container").style.top = topPositionBag + "%"; // Set CSS top property
+  let animationDelayBag = randomNumber(0, animationDelayMaxGarbage, false);
+  document.getElementById("bag_container").style.animationDelay =
+    animationDelayBag + "s"; // Set CSS animation delay
+  document.querySelector("#bag_container").classList.add("move_slow");
+
+  let pos6 = randomNumber(1, 5, true);
+  document.querySelector("#can_container").classList.add("position" + pos6);
+  console.log("Can position = " + pos6);
+  // let topPositionCan = randomNumber(35, 89, true);
+  // document.getElementById("can_container").style.top = topPositionCan + "%"; // Set CSS top property
+  let animationDelayCan = randomNumber(0, animationDelayMaxGarbage, false);
+  document.getElementById("can_container").style.animationDelay =
+    animationDelayCan + "s"; // Set CSS animation delay
+  document.querySelector("#can_container").classList.add("move_slow");
+
+  let pos7 = randomNumber(1, 5, true);
+  document.querySelector("#battery_container").classList.add("position" + pos7);
+  console.log("Battery position = " + pos7);
+  // let topPositionBattery = randomNumber(35, 89, true);
+  // document.getElementById("battery_container").style.top =
+  //   topPositionBattery + "%"; // Set CSS top property
+  let animationDelayBattery = randomNumber(0, animationDelayMaxGarbage, false);
+  document.getElementById("battery_container").style.animationDelay =
+    animationDelayBattery + "s"; // Set CSS animation delay
+  document.querySelector("#battery_container").classList.add("move_slow");
+
+  let pos8 = randomNumber(1, 5, true);
+  document.querySelector("#bottle_container").classList.add("position" + pos8);
+  console.log("Bottle position = " + pos8);
+  // let topPositionBottle = randomNumber(35, 89, true);
+  // document.getElementById("bottle_container").style.top =
+  //   topPositionBottle + "%"; // Set CSS top property
+  let animationDelayBottle = randomNumber(0, animationDelayMaxGarbage, false);
+  document.getElementById("bottle_container").style.animationDelay =
+    animationDelayBottle + "s"; // Set CSS animation delay
+  document.querySelector("#bottle_container").classList.add("move_slow");
+}
+
+function animationClick() {
+  // Click events Fish
+  document
+    .querySelector("#fish1_container")
+    .addEventListener("click", clickFish);
+  document
+    .querySelector("#fish2_container")
+    .addEventListener("click", clickFish);
+  document
+    .querySelector("#fish3_container")
+    .addEventListener("click", clickFish);
+  document
+    .querySelector("#fish4_container")
+    .addEventListener("click", clickFish);
+
+  // Click events Garbage
+  document
+    .querySelector("#bag_container")
+    .addEventListener("click", clickGarbage);
+  document
+    .querySelector("#can_container")
+    .addEventListener("click", clickGarbage);
+  document
+    .querySelector("#battery_container")
+    .addEventListener("click", clickGarbage);
+  document
+    .querySelector("#bottle_container")
+    .addEventListener("click", clickGarbage);
+}
+
+function animationRestart() {
+  // Random start after each iteration
+  document
+    .querySelector("#fish1_container")
+    .addEventListener("animationiteration", randomStart);
+  document
+    .querySelector("#fish2_container")
+    .addEventListener("animationiteration", randomStart);
+  document
+    .querySelector("#fish3_container")
+    .addEventListener("animationiteration", randomStart);
+  document
+    .querySelector("#fish4_container")
+    .addEventListener("animationiteration", randomStart);
+
+  // Random start after each iteration
+  document
+    .querySelector("#bag_container")
+    .addEventListener("animationiteration", randomStart);
+  document
+    .querySelector("#can_container")
+    .addEventListener("animationiteration", randomStart);
+  document
+    .querySelector("#battery_container")
+    .addEventListener("animationiteration", randomStart);
+  document
+    .querySelector("#bottle_container")
+    .addEventListener("animationiteration", randomStart);
+}
+
 function endGame() {
   // Remove animation classes
   document.querySelector("#fish1_container").classList.remove("move");
   document.querySelector("#fish2_container").classList.remove("move");
   document.querySelector("#fish3_container").classList.remove("move");
   document.querySelector("#fish4_container").classList.remove("move");
-  document.querySelector("#bag_container").classList.remove("move");
-  document.querySelector("#can_container").classList.remove("move");
-  document.querySelector("#battery_container").classList.remove("move");
-  document.querySelector("#bottle_container").classList.remove("move");
+  document.querySelector("#bag_container").classList.remove("move_slow");
+  document.querySelector("#can_container").classList.remove("move_slow");
+  document.querySelector("#battery_container").classList.remove("move_slow");
+  document.querySelector("#bottle_container").classList.remove("move_slow");
 
   // Remove eventlistners
   document
@@ -320,41 +454,4 @@ function endGame() {
   document
     .querySelector("#bottle_container")
     .removeEventListener("animationiteration", randomStart);
-}
-
-function displayGameOver() {
-  console.log("Game over");
-  console.log("Gametime: " + gametime);
-  console.log("timeleft: " + timeLeft);
-  document.querySelector("#game").classList.add("hidden");
-  document.querySelector("#game-over").classList.remove("hidden");
-  endGame();
-}
-
-function displayLevelComplete() {
-  console.log("Level complete");
-  console.log("Gametime: " + gametime);
-  console.log("timeleft: " + timeLeft);
-  document.querySelector("#game").classList.add("hidden");
-  document.querySelector("#level-complete").classList.remove("hidden");
-  endGame();
-}
-
-function updateCountdown() {
-  timeLeft--;
-  if (timeLeft == 0) {
-    if (points >= pointsToWin) {
-      displayLevelComplete();
-    } else {
-      displayGameOver();
-    }
-  }
-}
-
-function randomNumber(min, max, integer = false) {
-  if (integer) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  } else {
-    return Math.random() * (max - min) + min;
-  }
 }

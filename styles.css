@@ -61,8 +61,7 @@ img {
 #bag_container {
   width: 9%;
   position: absolute;
-  top: 55%;
-  /* left: 55%; */
+  /* top: 55%; */
   left: -10%;
 }
 #can_container {
@@ -88,6 +87,26 @@ img {
   position: absolute;
   /* top: 65%; */
   left: -10%;
+}
+
+.position1 {
+  top: 35%;
+}
+
+.position2 {
+  top: 47.5%;
+}
+
+.position3 {
+  top: 60%;
+}
+
+.position4 {
+  top: 72.5%;
+}
+
+.position5 {
+  top: 85%;
 }
 
 #fish1_container {
@@ -252,7 +271,7 @@ img {
   /* z-index: 1; */
 }
 
-.timer div {
+#timebar {
   height: 1em;
   background: linear-gradient(to bottom, red, #900);
 }
@@ -557,17 +576,17 @@ button:hover {
   }
 }
 
-.timer_countdown {
-  animation: timer-countdown;
+.scaleX {
+  animation: scaleX;
   animation-duration: var(--gametime);
   animation-timing-function: linear;
   transform-origin: left center;
   animation-fill-mode: forwards;
 }
 
-@keyframes timer-countdown {
+@keyframes scaleX {
   100% {
-    transform: scaleX(0);
+    transform: scaleX(0.0001);
   }
 }
 
