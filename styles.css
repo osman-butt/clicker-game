@@ -2,8 +2,8 @@
   /* --gametime: 30s; */
   --timerglow: calc(var(--gametime) * 0.1);
   --timerglow-delay: calc(var(--gametime) * 0.9);
-  --fish-move-duration: 5s;
-  --garbage-move-duration: 6s;
+  --fish-move-duration: 7s;
+  --garbage-move-duration: 8s;
   --fish-start: -15%;
   --fish-width: 15%;
 }
@@ -211,16 +211,9 @@ img {
   width: 100%;
 }
 
-/* #game_ui {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  position: fixed;
-  top: 1em;
-  left: 10em;
-} */
+/* Game UI */
 #game_ui {
   grid-area: 1 / 1;
-  /* position: relative; */
 }
 
 #game_ui_container {
@@ -241,7 +234,6 @@ img {
   text-align: center;
   align-self: center;
   justify-self: center;
-  /* z-index: 1; */
 }
 
 #score_logo {
@@ -276,11 +268,7 @@ img {
   background: linear-gradient(to bottom, red, #900);
 }
 
-.hidden {
-  display: none;
-  visibility: hidden;
-}
-
+/* Screens */
 #start,
 #game-over,
 #level-complete {
@@ -317,19 +305,40 @@ img {
   font-size: 3vw;
 }
 
-.menu {
+.menu-background {
   grid-area: 2 / 4 / 8 / 8;
   position: relative;
 }
 
 .start-btn {
-  grid-area: 4 / 5 / 6 / 7;
+  grid-area: 5 / 5 / 6 / 7;
   justify-self: center;
   align-self: center;
   position: absolute;
 }
 
 .start-btn > button {
+  font-family: "Games", sans-serif;
+  background-color: rgb(0, 94, 255);
+  color: white;
+  border: solid;
+  border-radius: 1em;
+  border-color: black;
+  width: 12em;
+  height: 4em;
+  font-size: 2vw;
+}
+
+#gameover-menu-btn-container,
+#level-complete-btn-container {
+  grid-area: 6 / 5 / 9 / 7;
+  justify-self: center;
+  align-self: center;
+  position: absolute;
+}
+
+#gameover-menu-btn-container > button,
+#level-complete-btn-container > button {
   font-family: "Games", sans-serif;
 
   background-color: rgb(0, 94, 255);
@@ -343,32 +352,13 @@ img {
 }
 
 .how-to-play-btn {
-  grid-area: 6 / 5 / 8 / 7;
+  grid-area: 7 / 5 / 9 / 7;
   justify-self: center;
   align-self: center;
   position: absolute;
 }
 
 .how-to-play-btn > button {
-  font-family: "Games", sans-serif;
-  background-color: rgb(0, 94, 255);
-  color: white;
-  border: solid;
-  border-radius: 1em;
-  border-color: black;
-  width: 12em;
-  height: 4em;
-  font-size: 2vw;
-}
-
-.rankings-btn {
-  grid-area: 8 / 5 / 10 / 7;
-  justify-self: center;
-  align-self: center;
-  position: absolute;
-}
-
-.rankings-btn > button {
   font-family: "Games", sans-serif;
   background-color: rgb(0, 94, 255);
   color: white;
@@ -399,26 +389,28 @@ img {
   font-size: 1.9vw;
 }
 
-.back-btn {
+#go-to-menu-btn {
   grid-area: 8 / 5 / 10 / 7;
   justify-self: center;
   align-self: center;
   position: absolute;
 }
 
-.back-btn > button {
+#go-to-menu-btn > button {
   font-family: "Games", sans-serif;
-
   background-color: rgb(0, 94, 255);
   color: white;
   border: solid;
   border-radius: 1em;
   border-color: black;
-  width: 8em;
-  height: 3em;
+  width: 12em;
+  height: 4em;
   font-size: 2vw;
 }
 
+#gameover-menu-btn:hover,
+#level-complete-btn:hover,
+#go-to-menu-btn > button:hover,
 button:hover {
   opacity: 0.8;
   cursor: pointer;
@@ -441,6 +433,12 @@ button:hover {
 
 .menu-fisher-sprite {
   width: 100%;
+}
+
+/* Hidden screens */
+.hidden {
+  display: none;
+  visibility: hidden;
 }
 
 /* Animations */

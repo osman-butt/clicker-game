@@ -6,7 +6,8 @@ let points = 0;
 let lives = 0;
 let timeLeft = 0;
 let gametime = 0;
-const pointsToWin = 1;
+const pointsToWin = 25;
+let updateCountdownID;
 
 function initApp() {
   console.log("Initialize app");
@@ -17,46 +18,38 @@ function initApp() {
   document.querySelector(".start-btn").addEventListener("click", start);
   document
     .querySelector(".how-to-play-btn")
-    .addEventListener("click", howToPlay);
+    .addEventListener("click", howToPlayMenu);
 
   // load sound
   document.querySelector("#sound_fish").load();
   document.querySelector("#sound_garbage").load();
   document.querySelector("#sound_gameover").load();
-  document.querySelector("#sound_play").load();
+  document.querySelector("#sound_ingame").load();
   document.querySelector("#sound_complete").load();
 }
 
-function howToPlay() {
+function howToPlayMenu() {
   document
     .querySelector(".how-to-play-btn")
-    .removeEventListener("click", howToPlay);
+    .removeEventListener("click", howToPlayMenu);
   document.querySelector("#menu-container").classList.add("hidden");
   document
     .querySelector("#menu-how-to-play-container")
     .classList.remove("hidden");
   document.querySelector("#start").offsetHeight;
-  document.querySelector(".back-btn").addEventListener("click", initApp);
+  document.querySelector("#go-to-menu-btn").addEventListener("click", initApp);
 }
 
 function start() {
-  console.log("start");
-  document.querySelector("#sound_play").play();
-  setInterval(updateCountdown, 1000);
-  // Restart points, lives and timer
-  points = 0;
-  lives = 3;
-  timeLeft = 10;
-  gametime = timeLeft + "s";
-
-  // Set timer
-  document.querySelector("#timebar").classList.add("scaleX");
-
+  console.log("Start Game");
+  document.querySelector("#sound_ingame").play();
+  updateCountdownID = setInterval(updateCountdown, 1000);
+  // Reset points, lives and timer
+  resetLives();
+  resetPoints();
+  resetTimer();
   // Remove eventlistner
   document.querySelector(".start-btn").removeEventListener("click", start);
-
-  // set CSS gametime var
-  document.querySelector(":root").style.setProperty("--gametime", gametime);
 
   // Start game
   document.querySelector("#start").classList.add("hidden");
@@ -65,6 +58,38 @@ function start() {
   animationStart();
   animationClick();
   animationRestart();
+}
+
+function resetLives() {
+  lives = 3;
+  document.querySelector("#life1").offsetHeight;
+  document.querySelector("#life1").classList.remove("hidden");
+  document.querySelector("#life2").offsetHeight;
+  document.querySelector("#life2").classList.remove("hidden");
+  document.querySelector("#life3").offsetHeight;
+  document.querySelector("#life3").classList.remove("hidden");
+}
+
+function resetPoints() {
+  points = 0;
+  displayPoints();
+}
+
+function resetTimer() {
+  timeLeft = 60;
+  gametime = timeLeft + "s";
+  // Remove timebar animation
+  document.querySelector("#timebar").classList.remove("scaleX");
+  document.querySelector("#timebar").offsetHeight;
+  document.querySelector("#time_board").classList.remove("glow");
+  document.querySelector("#time_board").offsetHeight;
+
+  // set CSS gametime var
+  document.querySelector(":root").style.setProperty("--gametime", gametime);
+  // Start timebar animation
+  document.querySelector("#timebar").classList.add("scaleX");
+  document.querySelector("#time_board").classList.add("glow");
+  console.log("timeLeft = " + timeLeft);
 }
 
 function randomStart() {
@@ -192,6 +217,9 @@ function incrementPoints() {
   console.log("Point added");
   points++;
   displayPoints();
+  if (points >= pointsToWin) {
+    displayLevelComplete();
+  }
 }
 
 function displayPoints() {
@@ -203,25 +231,40 @@ function displayGameOver() {
   console.log("Gametime: " + gametime);
   console.log("timeleft: " + timeLeft);
   // game over sound
-  document.querySelector("#sound_play").pause();
-  document.querySelector("#sound_play").currentTime = 0;
+  document.querySelector("#sound_ingame").pause();
+  document.querySelector("#sound_ingame").currentTime = 0;
   document.querySelector("#sound_gameover").play();
   document.querySelector("#game").classList.add("hidden");
   document.querySelector("#game-over").classList.remove("hidden");
+  // Main menu eventlistner
+  document
+    .querySelector("#gameover-menu-btn")
+    .addEventListener("click", showStartScreen);
   endGame();
 }
 
 function displayLevelComplete() {
-  // level complete sound
-  document.querySelector("#sound_play").pause();
-  document.querySelector("#sound_play").currentTime = 0;
-  document.querySelector("#sound_complete").play();
   console.log("Level complete");
   console.log("Gametime: " + gametime);
   console.log("timeleft: " + timeLeft);
-  document.querySelector("#game").classList.add("hidden");
+  // level complete sound
+  document.querySelector("#sound_ingame").pause();
+  document.querySelector("#sound_ingame").currentTime = 0;
+  document.querySelector("#sound_complete").play();
+  // document.querySelector("#game").classList.add("hidden");
   document.querySelector("#level-complete").classList.remove("hidden");
+  // Main menu eventlistner
+  document
+    .querySelector("#level-complete-btn")
+    .addEventListener("click", showStartScreen);
   endGame();
+}
+
+function showStartScreen() {
+  document.querySelector("#level-complete").classList.add("hidden");
+  document.querySelector("#game-over").classList.add("hidden");
+  document.querySelector("#start").classList.remove("hidden");
+  initApp();
 }
 
 function updateCountdown() {
@@ -395,16 +438,27 @@ function animationRestart() {
 }
 
 function endGame() {
+  document.querySelector("#game").classList.add("hidden");
+  document.querySelector("#game").offsetHeight;
+  // stop countdown update
+  clearInterval(updateCountdownID);
   // Remove animation classes
+  document.querySelector("#fish1_container").offsetHeight;
   document.querySelector("#fish1_container").classList.remove("move");
+  document.querySelector("#fish2_container").offsetHeight;
   document.querySelector("#fish2_container").classList.remove("move");
+  document.querySelector("#fish3_container").offsetHeight;
   document.querySelector("#fish3_container").classList.remove("move");
+  document.querySelector("#fish4_container").offsetHeight;
   document.querySelector("#fish4_container").classList.remove("move");
+  document.querySelector("#bag_container").offsetHeight;
   document.querySelector("#bag_container").classList.remove("move_slow");
+  document.querySelector("#can_container").offsetHeight;
   document.querySelector("#can_container").classList.remove("move_slow");
+  document.querySelector("#battery_container").offsetHeight;
   document.querySelector("#battery_container").classList.remove("move_slow");
+  document.querySelector("#bottle_container").offsetHeight;
   document.querySelector("#bottle_container").classList.remove("move_slow");
-
   // Remove eventlistners
   document
     .querySelector("#fish1_container")

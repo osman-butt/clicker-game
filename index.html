@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <link href="https://fonts.cdnfonts.com/css/games" rel="stylesheet" />
-    <link rel="shortcut icon" href="#" />
+    <link rel="shortcut icon" href="index.html" />
     <title>Garbage Collector</title>
   </head>
   <body>
     <div id="screen">
-      <div id="game" class="hidden">
+      <div id="game">
         <div id="game_background"></div>
         <div id="game_elements">
           <div id="fisherman_boat_container">
@@ -92,7 +92,7 @@
                 <img id="life3_sprite" src="img/life.png" alt="" />
               </div>
             </div>
-            <div id="time_board" class="glow">
+            <div id="time_board">
               <div id="timebar"></div>
             </div>
           </div>
@@ -100,17 +100,14 @@
       </div>
       <div id="start" class="hidden">
         <div id="start-background"></div>
-        <div id="menu-container">
-          <img class="menu" src="img/menu.png" alt="" />
+        <div id="menu-container" class="hidden">
+          <img class="menu-background" src="img/menu.png" alt="" />
           <div class="menu-header"><h1>Garbage Collector</h1></div>
           <div class="start-btn">
-            <button>START</button>
+            <button><h3>Start</h3></button>
           </div>
           <div class="how-to-play-btn">
-            <button>HOW TO PLAY</button>
-          </div>
-          <div class="rankings-btn">
-            <button>RANKINGS</button>
+            <button><h3>HOW TO PLAY</h3></button>
           </div>
           <div class="menu-fisher">
             <img
@@ -121,19 +118,21 @@
           </div>
         </div>
         <div id="menu-how-to-play-container" class="hidden">
-          <img class="menu" src="img/menu.png" alt="" />
+          <img class="menu-background" src="img/menu.png" alt="" />
           <div class="menu-header"><h1>How to play?</h1></div>
           <div id="how-to-play-text">
-            <p>
-              Help the fisherman clean the lake, by capturing all the garbage
-              before the time runs out.
+            <h4>
+              Help the fisherman clean the lake.
               <br />
               <br />
-              But be careful not to capture any fish.
-            </p>
+              Capture 25 pieces of garbage before the time runs out.
+              <!-- <br />
+              <br />
+              Be careful not to capture any fish a long the way. -->
+            </h4>
           </div>
-          <div class="back-btn">
-            <button>MENU</button>
+          <div id="go-to-menu-btn">
+            <button><h3>MENU</h3></button>
           </div>
           <div class="menu-fisher">
             <img
@@ -147,19 +146,16 @@
       <div id="game-over" class="hidden">
         <div id="game-over-background"></div>
         <div id="game-over-container">
-          <img class="menu" src="img/menu.png" alt="" />
+          <img class="menu-background" src="img/menu.png" alt="" />
           <div class="menu-header"><h1>GAME OVER</h1></div>
           <div id="game-over-text">
-            <p>
+            <h4>
               Unfortunately you captured to many fish &#8211; Do you want to try
               again?
-            </p>
+            </h4>
           </div>
-          <div class="start-btn">
-            <button>PLAY AGAIN</button>
-          </div>
-          <div class="rankings-btn">
-            <button>RANKINGS</button>
+          <div id="gameover-menu-btn-container">
+            <button id="gameover-menu-btn"><h3>Main Menu</h3></button>
           </div>
           <div class="menu-fisher">
             <img
@@ -173,16 +169,13 @@
       <div id="level-complete" class="hidden">
         <div id="level-complete-background"></div>
         <div id="level-complete-container">
-          <img class="menu" src="img/menu.png" alt="" />
+          <img class="menu-background" src="img/menu.png" alt="" />
           <div class="menu-header"><h1>Congratulations</h1></div>
           <div id="level-complete-text">
             <p style="text-align: center">LEVEL COMPLETE</p>
           </div>
-          <div class="start-btn">
-            <button>PLAY AGAIN</button>
-          </div>
-          <div class="rankings-btn">
-            <button>RANKINGS</button>
+          <div id="level-complete-btn-container">
+            <button id="level-complete-btn"><h3>Main Menu</h3></button>
           </div>
           <div class="menu-fisher">
             <img
@@ -198,7 +191,7 @@
     <audio id="sound_fish" src="sounds/fish.mp3"></audio>
     <audio id="sound_garbage" src="sounds/garbage.mp3"></audio>
     <audio id="sound_gameover" src="sounds/gameover.mp3"></audio>
-    <audio id="sound_play" src="sounds/play.mp3"></audio>
+    <audio id="sound_ingame" src="sounds/play.mp3"></audio>
     <audio id="sound_complete" src="sounds/lvlcomplete.mp3"></audio>
     <script src="app.js"></script>
   </body>
