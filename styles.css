@@ -24,6 +24,7 @@ img {
   /* make a 16:9 sized box that takes on the width of the window */
   aspect-ratio: 16 / 9;
   width: 100%;
+  user-select: none;
 }
 
 #game {
@@ -220,7 +221,7 @@ img {
 #fish2_container:hover,
 #fish3_container:hover,
 #fish4_container:hover {
-  cursor: url("img/net.png"), auto;
+  cursor: url("img/net.png") 6 6, auto;
 }
 
 /* Game UI */

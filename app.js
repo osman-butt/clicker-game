@@ -114,7 +114,7 @@ function clickGarbage() {
   document.querySelector("#sound_garbage").play();
 
   // Remove eventlistner to prevent double click
-  this.removeEventListener("click", clickGarbage);
+  this.removeEventListener("mousedown", clickGarbage);
 
   // Pause animation
   this.classList.add("paused");
@@ -152,7 +152,7 @@ function spawnGarbage() {
   this.classList.add("move_slow");
 
   // Make clickable again
-  this.addEventListener("click", clickGarbage);
+  this.addEventListener("mousedown", clickGarbage);
 }
 
 function clickFish() {
@@ -162,7 +162,7 @@ function clickFish() {
   document.querySelector("#sound_fish").play();
 
   // Remove eventlistner to prevent double click
-  this.removeEventListener("click", clickFish);
+  this.removeEventListener("mousedown", clickFish);
 
   // Pause fish
   this.classList.add("paused");
@@ -196,7 +196,7 @@ function spawnFish() {
   this.classList.add("move");
 
   // Make clickable again
-  this.addEventListener("click", clickFish);
+  this.addEventListener("mousedown", clickFish);
 }
 
 function decrementLives() {
@@ -383,30 +383,30 @@ function animationClick() {
   // Click events Fish
   document
     .querySelector("#fish1_container")
-    .addEventListener("click", clickFish);
+    .addEventListener("mousedown", clickFish);
   document
     .querySelector("#fish2_container")
-    .addEventListener("click", clickFish);
+    .addEventListener("mousedown", clickFish);
   document
     .querySelector("#fish3_container")
-    .addEventListener("click", clickFish);
+    .addEventListener("mousedown", clickFish);
   document
     .querySelector("#fish4_container")
-    .addEventListener("click", clickFish);
+    .addEventListener("mousedown", clickFish);
 
   // Click events Garbage
   document
     .querySelector("#bag_container")
-    .addEventListener("click", clickGarbage);
+    .addEventListener("mousedown", clickGarbage);
   document
     .querySelector("#can_container")
-    .addEventListener("click", clickGarbage);
+    .addEventListener("mousedown", clickGarbage);
   document
     .querySelector("#battery_container")
-    .addEventListener("click", clickGarbage);
+    .addEventListener("mousedown", clickGarbage);
   document
     .querySelector("#bottle_container")
-    .addEventListener("click", clickGarbage);
+    .addEventListener("mousedown", clickGarbage);
 }
 
 function animationRestart() {
@@ -464,16 +464,16 @@ function endGame() {
   // Remove eventlistners
   document
     .querySelector("#fish1_container")
-    .removeEventListener("click", clickFish);
+    .removeEventListener("mousedown", clickFish);
   document
     .querySelector("#fish2_container")
-    .removeEventListener("click", clickFish);
+    .removeEventListener("mousedown", clickFish);
   document
     .querySelector("#fish3_container")
-    .removeEventListener("click", clickFish);
+    .removeEventListener("mousedown", clickFish);
   document
     .querySelector("#fish4_container")
-    .removeEventListener("click", clickFish);
+    .removeEventListener("mousedown", clickFish);
   document
     .querySelector("#fish1_container")
     .removeEventListener("animationiteration", randomStart);
@@ -488,16 +488,16 @@ function endGame() {
     .removeEventListener("animationiteration", randomStart);
   document
     .querySelector("#bag_container")
-    .removeEventListener("click", clickGarbage);
+    .removeEventListener("mousedown", clickGarbage);
   document
     .querySelector("#can_container")
-    .removeEventListener("click", clickGarbage);
+    .removeEventListener("mousedown", clickGarbage);
   document
     .querySelector("#battery_container")
-    .removeEventListener("click", clickGarbage);
+    .removeEventListener("mousedown", clickGarbage);
   document
     .querySelector("#bottle_container")
-    .removeEventListener("click", clickGarbage);
+    .removeEventListener("mousedown", clickGarbage);
   document
     .querySelector("#bag_container")
     .removeEventListener("animationiteration", randomStart);
