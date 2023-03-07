@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <link href="https://fonts.cdnfonts.com/css/games" rel="stylesheet" />
-    <link rel="shortcut icon" href="index.html" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://cdn-icons-png.flaticon.com/512/860/860829.png"
+    />
     <title>Garbage Collector</title>
   </head>
   <body>
     <div id="screen">
-      <div id="game">
+      <div id="game" class="hidden">
         <div id="game_background"></div>
         <div id="game_elements">
           <div id="fisherman_boat_container">
@@ -125,7 +129,7 @@
               Help the fisherman clean the lake.
               <br />
               <br />
-              Capture 25 pieces of garbage before the time runs out.
+              Capture 30 pieces of garbage before the time runs out.
               <!-- <br />
               <br />
               Be careful not to capture any fish a long the way. -->
@@ -149,9 +153,12 @@
           <img class="menu-background" src="img/menu.png" alt="" />
           <div class="menu-header"><h1>GAME OVER</h1></div>
           <div id="game-over-text">
-            <h4>
-              Unfortunately you captured to many fish &#8211; Do you want to try
-              again?
+            <h4>Your score: <span id="gameoverscore">0</span></h4>
+            <h4 id="game-over-txt">
+              <!-- Unfortunately you captured to many fish &#8211; Do you want to try
+              again? -->
+              Unfortunately you did not capture enough garbage &#8211; Do you
+              want to try again?
             </h4>
           </div>
           <div id="gameover-menu-btn-container">
@@ -172,7 +179,8 @@
           <img class="menu-background" src="img/menu.png" alt="" />
           <div class="menu-header"><h1>Congratulations</h1></div>
           <div id="level-complete-text">
-            <p style="text-align: center">LEVEL COMPLETE</p>
+            <h4 style="text-align: center">LEVEL COMPLETE</h4>
+            <h4>Your score: <span id="lvlscore">0</span></h4>
           </div>
           <div id="level-complete-btn-container">
             <button id="level-complete-btn"><h3>Main Menu</h3></button>

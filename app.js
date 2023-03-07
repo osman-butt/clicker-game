@@ -6,7 +6,7 @@ let points = 0;
 let lives = 0;
 let timeLeft = 0;
 let gametime = 0;
-const pointsToWin = 25;
+const pointsToWin = 30;
 let updateCountdownID;
 
 function initApp() {
@@ -224,6 +224,8 @@ function incrementPoints() {
 
 function displayPoints() {
   document.querySelector("#score").textContent = points;
+  document.querySelector("#lvlscore").textContent = points;
+  document.querySelector("#gameoverscore").textContent = points;
 }
 
 function displayGameOver() {

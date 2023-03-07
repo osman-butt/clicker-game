@@ -2,8 +2,8 @@
   /* --gametime: 30s; */
   --timerglow: calc(var(--gametime) * 0.1);
   --timerglow-delay: calc(var(--gametime) * 0.9);
-  --fish-move-duration: 7s;
-  --garbage-move-duration: 8s;
+  --fish-move-duration: 6s;
+  --garbage-move-duration: 7.5s;
   --fish-start: -15%;
   --fish-width: 15%;
 }
@@ -71,7 +71,7 @@ img {
   left: -10%;
 }
 #battery_container {
-  width: 3%;
+  width: 3.5%;
   position: absolute;
   /* top: 43%; */
   left: -10%;
@@ -211,6 +211,18 @@ img {
   width: 100%;
 }
 
+#bag_container:hover,
+#can_container:hover,
+#battery_container:hover,
+#bottle_container:hover,
+#plastic_container:hover,
+#fish1_container:hover,
+#fish2_container:hover,
+#fish3_container:hover,
+#fish4_container:hover {
+  cursor: url("img/net.png"), auto;
+}
+
 /* Game UI */
 #game_ui {
   grid-area: 1 / 1;
@@ -331,7 +343,7 @@ img {
 
 #gameover-menu-btn-container,
 #level-complete-btn-container {
-  grid-area: 6 / 5 / 9 / 7;
+  grid-area: 8 / 5 / 9 / 7;
   justify-self: center;
   align-self: center;
   position: absolute;
